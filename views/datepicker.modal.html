@@ -4,7 +4,7 @@
 	</header>
 	<ion-content class="has-header">
 	<div class="padding">
-		<div pickadate ng-model="formData.date"></div>
+		<div pickadate ng-model="formData.date" base-date="formData.baseDate" max-date="formData.maxDate" min-date="formData.minDate"></div>
 	</div>
 	<div class="padding">
 	 <button class="button button-block button-balanced" ng-click="closeDatePickerModal(formData.date)">确定</button>

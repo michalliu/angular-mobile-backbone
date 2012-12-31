@@ -36,10 +36,19 @@
 		];
 		scope.hourRange = createRange(0,24);
 		scope.minuteRange = createRange(0,60);
+		var baseTime = page.data.profile.current_time * 1000;
+		var baseDate = new Date();
+		var maxDate = new Date();
+		var timeLimit = page.data.profile.add_wish_time_limit;
+		baseDate.setTime(baseTime);
+		maxDate.setTime(baseTime + timeLimit * 24 * 3600 * 1000);
 		scope.formData={
 			city: movieData.hotCityList[3], // 默认选择深圳
 			theater: null,
 			date: null,
+			baseDate: baseDate,
+			maxDate: maxDate,
+			minDate: baseDate,
 			hour: null,
 			minute: null,
 			time: null,
@@ -60,6 +69,7 @@
 			});
 		});
 		scope.openDatePickerModal = function openDatepickerModal() {
+			scope.formData.date = null;
 			page.dialog.datepicker.open(scope);
 		};
 		scope.closeDatePickerModal = function (date) {
@@ -69,6 +79,7 @@
 			}
 			page.dialog.datepicker.close(scope);
 			timeout(function () {
+				scope.formData.time = null;
 				page.dialog.timepicker.open(scope);
 			},300);
 		};
