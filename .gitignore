@@ -4,5 +4,6 @@ index.htm
 index_develop.htm
 
 /temp/
+/release/
 /node_modules/
 /js/providers/views.js
