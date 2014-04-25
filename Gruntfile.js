@@ -114,11 +114,11 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 
-	grunt.registerTask('gethtml',['includereplace']);
+	grunt.registerTask('html',['includereplace']);
 	grunt.registerTask('release_css',['concat:css','cssmin']);
 	grunt.registerTask('release_js',['html2js','concat:lib','concat:page','uglify']);
 	grunt.registerTask('release_jscss',['html2js','concat','uglify','cssmin']);
-	grunt.registerTask('release_html',['gethtml','htmlmin']);
+	grunt.registerTask('release_html',['html','htmlmin']);
 	grunt.registerTask('release',['release_jscss','release_html']);
 	grunt.registerTask('default',['release']);
 	grunt.registerTask('serve',['connect']);
