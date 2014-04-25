@@ -36,8 +36,10 @@ Open another command window run `grunt`.A folder `/release/` will be created. ht
 Files in this folder is ought to be published.  
 You can open `http://localhost:9001/release/index.html#/index` to check if it works correctly.
 
-Folder structure
+Development Tips
 ================
+
+####Folder structure
 1. `/css`              contains your css files, a default `page.css` is provided to support animation
 2. `/js/libs/`         contains javascript libraries
 3. `/js/controllers/`  contains angular controllers
@@ -46,4 +48,8 @@ Folder structure
 6. `/tpl/`             contains html template to generate an index.html for development and an index.html for production
 7. `/views/`           thus views associates with controllers
 
+####Url params
+If you need to get some variable from outside, you can use `http://localhost:9001/index.html#/index?x=1&y=2`. x and y will be stored in `page.params`. You can inject `page` to your controller to access the variable.
 
+####Routing
+We use routing url to decide the animation direction. For example, if we navigate from `/index` to `/index/module/a`. The animation is slide from left to right. however, if we navigate from `/index/module/a` to `/index`. The animation is slide from right to left. When you design your app routing, you should aslo follow the rule.
