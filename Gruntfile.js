@@ -84,6 +84,14 @@ module.exports = function(grunt){
 				}
 			}
 		},
+		connect:{
+			server: {
+				options: {
+					port: 9001,
+					keepalive:true
+				}
+			}
+		},
 		// unused
 		compress:{
 			main:{
@@ -104,6 +112,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-html2js');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 
 	grunt.registerTask('release_css',['concat:css','cssmin']);
 	grunt.registerTask('release_js',['html2js','concat:lib','concat:page','uglify']);
