@@ -21,17 +21,21 @@ libs used:
 * angular-touch
 * zepto (recommend)
 
-##How to use
+####How to use
 1. clone the project and `npm install`
 2. run `grunt gethtml` to generate index.html from `tpl` folder
 3. run `grunt serve` to open a development webserve on port 9001
 4. open `http://localhost:9001/index.html#/index`
+5. open another command window run `grunt`  
+Some files are generated according the rules from `Gruntfile.js`.A folder `/release/` is created, files in this folder will be published. html,css,js are merged in to one single file and aslo minified.
 
-##Folder structure
-1. `/css` contains your css files, a default `page.css` is provided to support animation
-2. `/js/libs/` contains javascript libraries
-3. `/js/controllers/` contains angular controllers
-4. `/js/providers/` contains directives,filters,default page provider,dynamic generated template provider
-5. `/js/app.js` the angular app config
-6. `/tpl/` contains html template to generate an index.html for development and an index.html for production
-7. `/views/` thus views associates with controllers
+####Folder structure
+1. `/css`              contains your css files, a default `page.css` is provided to support animation
+2. `/js/libs/`         contains javascript libraries
+3. `/js/controllers/`  contains angular controllers
+4. `/js/providers/`    contains directives,filters,default page provider,dynamic generated template provider
+5. `/js/app.js`        the angular app config
+6. `/tpl/`             contains html template to generate an index.html for development and an index.html for production
+7. `/views/`           thus views associates with controllers
+
+
