@@ -31,7 +31,7 @@ module.exports = function(grunt){
 				dest: tempfolder+"/js/page.js"
 			},
 			css:{
-				src:["css/page.css"],
+				src:["css/angular-mobile-bootstrap.css"],
 				dest: tempfolder+"/all.css"
 			}
 		},
