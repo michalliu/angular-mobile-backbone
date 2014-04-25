@@ -6,6 +6,7 @@
 	angular.module("app",["ngRoute",
 		"ngAnimate", // comment it to disable animation
 		"ngTouch",
+		"ng-iscroll",
 		"appControllers",
 		"appTemplateCache",
 		"appProviders",
