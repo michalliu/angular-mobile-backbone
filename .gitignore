@@ -1,0 +1,8 @@
+*.swp
+
+index.htm
+index_develop.htm
+
+/temp/
+/node_modules/
+/js/providers/views.js
