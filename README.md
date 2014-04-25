@@ -26,3 +26,12 @@ libs used:
 2. run `grunt gethtml` to generate index.html from `tpl` folder
 3. run `grunt serve` to open a development webserve on port 9001
 4. open `http://localhost:9001/index.html#/index`
+
+##Folder structure
+1. `/css` contains your css files, a default `page.css` is provided to support animation
+2. `/js/libs/` contains javascript libraries
+3. `/js/controllers/` contains angular controllers
+4. `/js/providers/` contains directives,filters,default page provider,dynamic generated template provider
+5. `/js/app.js` the angular app config
+6. `/tpl/` contains html template to generate an index.html for development and an index.html for production
+7. `/views/` thus views associates with controllers
