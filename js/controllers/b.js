@@ -1,5 +1,4 @@
 /*globals angular*/
-// 活动管理
 (function indexControllerInit() { "use strict";
 
 	angular.module("appControllers").

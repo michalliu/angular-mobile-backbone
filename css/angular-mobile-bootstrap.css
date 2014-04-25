@@ -1,4 +1,4 @@
-.pageViewWrapper{width:100%;position:relative;} /*此处不能用overflow:hidden*/
+.pageViewWrapper{width:100%;position:relative;} /*don't use overflow:hidden*/
 .pageViewPort{width:100%;height:100%;position:absolute;-webkit-transform:translate3d(0,0,0);-webkit-transition:-webkit-transform 450ms;-webkit-backface-visibility: hidden;-webkit-perspective: 1000;background:#eee;min-height:400px;}
 .pageViewPort:first-child{z-index:2;}
 .pageViewPort:last-child{z-index:1;}
