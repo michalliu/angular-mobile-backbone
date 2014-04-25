@@ -1,7 +1,6 @@
 *.swp
 
-index.htm
-index_develop.htm
+index.html
 
 /temp/
 /release/
