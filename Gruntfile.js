@@ -23,7 +23,7 @@ module.exports = function(grunt){
 				separator: ';\n'
 			},
 			lib:{
-				src:["js/lib/zepto.js","js/lib/angular.js","js/lib/angular-animate.js","js/lib/angular-touch.js","js/lib/angular-route.js"],
+				src:["js/lib/zepto.js","js/lib/angular.js","js/lib/angular-*.js"],
 				dest: tempfolder+"/js/lib.js"
 			},
 			page:{
