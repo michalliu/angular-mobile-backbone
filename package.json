@@ -1,7 +1,7 @@
 {
-  "name": "Manage",
+  "name": "Angular mobile backbone",
   "version": "1.0.0",
-  "description": "小组pc管理端",
+  "description": "Made an angular mobile app as easy as possiable",
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-uglify": "~0.2.2",
