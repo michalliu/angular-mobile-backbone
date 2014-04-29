@@ -1,7 +1,5 @@
-<div>
-  <ul>
-    <li><a ng-click="navigate('/index/module/a')">Module A</a></li>
-    <li><a ng-click="navigate('/index/module/b')">Module B</a></li>
-  </ul>
-</div>
-{{params}}
+<ul>
+  <li><a ng-click="navigate('/index/module/a')">Welcome</a></li>
+  <li><a ng-click="navigate('/index/module/b')">Multiple Level views</a></li>
+  <li ng-repeat="item in items track by $index">item {{$index}}</li>
+</ul>

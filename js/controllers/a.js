@@ -7,7 +7,7 @@
 		"page",
 		function($scope,
 			page){
-		$scope.message="This is Module A";
+		$scope.message="This is the start point of your awesome app";
 		$scope.back=function(){
 			page.back();
 		};

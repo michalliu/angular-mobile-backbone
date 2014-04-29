@@ -3,10 +3,22 @@
 
 	angular.module("appControllers").
 
-	controller("IndexControl",["$scope","page",function($scope,page){
+	controller("IndexControl",["$scope","page","$timeout",function($scope,page,$timeout){
 		$scope.navigate=function(path) {
 			page.navigate(path);
 		};
-		$scope.params=page.params;
+		$scope.items=[];
+
+		$timeout(function () {
+			$scope.items=new Array(40);
+		}, 1000);
+
+		$scope.$watch("items", iScrollRefresh);
+
+		function iScrollRefresh(){
+			$timeout(function () {
+				$scope.myScroll.pageViewScroll.refresh();
+			},0);
+		}
 	}]);
 }());

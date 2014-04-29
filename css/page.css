@@ -1,0 +1,9 @@
+html body ul{padding:0;margin:0;}
+/*header*/
+.header{position:absolute;top:0;left:0;right:0;height:40px;line-height:40px;width:100%;background:red;color:white;text-align:center;}
+/*footer*/
+.footer{position:absolute;bottom:0;left:0;right:0;height:40px;line-height:40px;width:100%;background:red;color:white;text-align:center;}
+/*body*/
+.pageViewWrapper{position:absolute;top:40px;left:0;bottom:40px;width:100%;background:green;overflow:hidden;}
+/*scroll content*/
+.pageViewPort :first-child{background:yellow;min-height:100%;}
