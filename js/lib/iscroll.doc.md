@@ -6,4 +6,4 @@ iscroll is the original version [4.2.5](https://github.com/cubiq/iscroll/tree/v4
 
 ng-iscroll is from [my fork](https://github.com/michalliu/ng-iScroll). See [demo](//TODO).
 
-iscroll has a lite version, for performance, we use the lite version as default. If you want to use the full version, just make a change in grunt task file.
+iscroll has a lite version, it doesn't provide a scrollbar. we use the full version in default.
