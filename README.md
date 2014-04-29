@@ -28,7 +28,7 @@ How to use
 ####development
 1. clone the project and `npm install`
 2. run `grunt html` to generate `index.html` from `tpl` folder  
-Be carefull, You should **NOT** edit index.html directly. It's generated from `/tpl/development/index.html`, your local change will lost when you run `grunt` command.
+Be carefull, You should **NOT** edit index.html directly, unless you know what you are doing. Remember, it's generated from `/tpl/development/index.html`, your local change will lost when you run `grunt` command.
 3. run `grunt serve` to open a development webserve on port 9001
 4. open `http://localhost:9001/index.html#/index`
 
@@ -50,7 +50,7 @@ Development Tips
 7. `/views/`           thus views associates with controllers
 
 ####Url params
-If you need to get some variable from outside, you can use `http://localhost:9001/index.html#/index?x=1&y=2`. x and y will be stored in `page.params`. You can inject `page` to your controller to access the variable.
+If you need to get some variable from outside, you can use `http://localhost:9001/index.html#/index?x=1&y=2`. x and y will be stored in `page.params`. You can inject `page` to your controller to access these variables. The url query will be removed from url for the sake of beauty and stores to cookie, so even if you refresh the page, they are still there.
 
-####Routing
-We use routing url to decide the animation direction. For example, if we navigate from `/index` to `/index/module/a`. The animation is slide from left to right. however, if we navigate from `/index/module/a` to `/index`. The animation is slide from right to left. When you design your app routing, you should aslo follow the rule.
+####Routing Animation
+We use routing url to decide the animation direction. For example, if we navigate from `/index` to `/index/module/a`. The animation is slide from left to right. however, if we navigate from `/index/module/a` to `/index`. The animation is slide from right to left. When you design your app routing, you should aslo follow this rule.
