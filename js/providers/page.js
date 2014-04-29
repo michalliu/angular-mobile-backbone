@@ -1,4 +1,4 @@
-/*global angular*/
+/*global angular,$*/
 (function pageProviderInit(){ "use strict";
 	var appCache;
 	angular.module("appProviders").
@@ -8,11 +8,13 @@
 		"$http",
 		"$q",
 		"$cacheFactory",
+		"cookieStore",
 		"$window",function($rootScope,
 			$location,
 			$http,
 			$q,
 			$cacheFactory,
+			cookieStore,
 			$win){
 
 		if (!appCache){
@@ -20,6 +22,15 @@
 		}
 
 		var params=angular.copy($location.search());
+		var paramsCookieKey="amb_params";
+
+		cookieStore.cookie.json=true;
+
+		if ($.isEmptyObject(params)) {
+			params = cookieStore.cookie(paramsCookieKey); // angular mobile backbone params cookie
+		} else {
+			cookieStore.cookie(paramsCookieKey, params);
+		}
 
 		// remove ugly initial params
 		angular.forEach(params, function (val,key) {

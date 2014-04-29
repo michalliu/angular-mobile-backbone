@@ -7,6 +7,7 @@
 		"ngAnimate", // comment it to disable animation
 		"ngTouch",
 		"ng-iscroll",
+		"jqCookies",
 		"appControllers",
 		"appTemplateCache",
 		"appProviders",

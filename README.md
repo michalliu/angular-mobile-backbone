@@ -7,19 +7,20 @@ This a bootstrapping app using angularjs designed for mobile devices(android and
 
 It contains:
 * classic angular application structure
-* grunt tasks to optimization the project into production
+* grunt tasks to optimization the project into production files
 * routing and animation support for mobile
-* url parameters handling
+* url parameters handling, supports back,forward and refresh button
 
 It doesn't contains:
 * beautiful UI interface (you need to design your own)
 
-libs used:
+Dependencies:
 * angularjs
 * angular-animate
 * angular-route
 * angular-touch
-* zepto (recommend)
+* angular-jquery-cookies
+* zeptojs
 
 How to use
 ==========
