@@ -6,4 +6,4 @@
 .slideLeft.ng-enter.ng-enter-active,.slideRight.ng-enter.ng-enter-active {-webkit-transform:translate3d(0,0,0);}
 .slideLeft.ng-leave,.slideRight.ng-leave {-webkit-transform:translate3d(0,0,0);}
 .slideLeft.ng-leave.ng-leave-active,.slideRight.ng-enter {-webkit-transform:translate3d(-100%,0,0);}
-.slideLeft.ng-leave > div:last-child,.slideRight.ng-leave > div:last-child{display:none;}
+.slideLeft.ng-leave .iscrollbar,.slideLeft.ng-enter .iscrollbar,.slideRight.ng-leave .iscrollbar,.slideRight.ng-enter .iscrollbar{display:none;}
