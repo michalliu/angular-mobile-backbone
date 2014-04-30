@@ -6,4 +6,4 @@ html body ul{padding:0;margin:0;}
 /*body*/
 .pageViewWrapper{position:absolute;top:40px;left:0;bottom:40px;width:100%;background:green;overflow:hidden;}
 /*scroll content*/
-.pageViewPort :first-child{background:yellow;min-height:100%;}
+.pageViewPort > :first-child{background:yellow;min-height:100%;}
