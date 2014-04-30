@@ -19,20 +19,22 @@ module.exports = function(grunt){
 		},
 		// concat js and css files to temp folder
 		concat:{
-			options:{
-				separator: ';\n'
-			},
-			lib:{
-				src:["js/lib/zepto.js","js/lib/iscroll.js","js/lib/angular.js","js/lib/angular-*.js"],
-				dest: tempfolder+"/js/lib.js"
-			},
-			page:{
-				src:["js/app.js","js/providers/*.js","js/controllers/**/*.js"],
-				dest: tempfolder+"/js/page.js"
+			js:{
+				options:{
+					separator: ';\n'
+				},
+				files:{
+					"temp/js/lib.js" : ["js/lib/zepto.js","js/lib/iscroll.js","js/lib/angular.js","js/lib/*.js"],
+					"temp/js/page.js": ["js/app.js","js/providers/*.js","js/controllers/**/*.js"]
+				}
 			},
 			css:{
-				src:["css/angular-mobile-bootstrap.css","css/*.css"],
-				dest: tempfolder+"/all.css"
+				options:{
+					separator: '\n'
+				},
+				files:{
+					"temp/all.css":["css/angular-mobile-bootstrap.css","css/*.css"]
+				}
 			}
 		},
 		// uglify js files put to release folder
@@ -116,7 +118,7 @@ module.exports = function(grunt){
 
 	grunt.registerTask('html',['includereplace']);
 	grunt.registerTask('release_css',['concat:css','cssmin']);
-	grunt.registerTask('release_js',['html2js','concat:lib','concat:page','uglify']);
+	grunt.registerTask('release_js',['html2js','concat:js','uglify']);
 	grunt.registerTask('release_jscss',['html2js','concat','uglify','cssmin']);
 	grunt.registerTask('release_html',['html','htmlmin']);
 	grunt.registerTask('release',['release_jscss','release_html']);
