@@ -17,7 +17,9 @@
 
 		function iScrollRefresh(){
 			$timeout(function () {
-				$scope.myScroll.pageViewScroll.refresh();
+				if ($scope.myScroll && $scope.myScroll.pageViewScroll) {
+					$scope.myScroll.pageViewScroll.refresh();
+				}
 			},0);
 		}
 	}]);
