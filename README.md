@@ -17,7 +17,7 @@ It contains:
 
 It doesn't contains:
 * beautiful UI interface (You need to create your own)  
-Hint, [Mobile angular UI](http://mobileangularui.com/) does provides UI, for me. It's a little overheaded.
+Hint, [Mobile angular UI](http://mobileangularui.com/) does provides UI.
 
 Dependencies:
 * angularjs
