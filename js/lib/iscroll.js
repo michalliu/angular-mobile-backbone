@@ -354,7 +354,7 @@ iScroll.prototype = {
 
 		if (!that.enabled) return;
 
-		if (that.options.onBeforeScrollStart) that.options.onBeforeScrollStart.call(that, e);
+		if (that.options.onBeforeScrollStart) that.options.onBeforeScrollStart.call(that, e, hasTouch);
 
 		if (that.options.useTransition || that.options.zoom) that._transitionTime(0);
 
