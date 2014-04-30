@@ -1,4 +1,4 @@
-/*globals angular*/
+/*globals angular,document*/
 (function appInit() { "use strict";
 
 	var entry="/index";
@@ -87,4 +87,7 @@
 	angular.module("appFilters", []);     // filters
 	angular.module("appDirectives", []);  // directives
 
+	document.addEventListener("touchmove",function (e) {
+		e.preventDefault();
+	},false);
 }());
