@@ -5,14 +5,19 @@ Everything you need to develop an angular application on mobile(iOS and Android)
 
 This a bootstrapping app using angularjs designed for mobile devices(android and ios). You can create your awesome angular appbase on it. we will keep improving it.
 
+
+
 It contains:
 * classic angular application structure
+* stable and optimized libraries (see /js/lib folder)
 * grunt tasks to optimization the project into production files
 * routing and animation support for mobile
 * url parameters handling, supports back,forward and refresh button
+* sample design pattern
 
 It doesn't contains:
-* beautiful UI interface (you need to design your own)
+* beautiful UI interface (You need to create your own)
+Hint, [Mobile angular UI](http://mobileangularui.com/) does provides UI, for me. It's a little overheaded.
 
 Dependencies:
 * angularjs
@@ -28,7 +33,7 @@ How to use
 ####development
 1. clone the project and `npm install`
 2. run `grunt html` to generate `index.html` from `tpl` folder  
-Be carefull, You should **NOT** edit index.html directly, unless you know what you are doing. Remember, it's generated from `/tpl/development/index.html`, your local change will lost when you run `grunt` command.
+Be carefull, You should **NOT** edit index.html directly, unless you know what you are doing. Remember, it's generated from `/tpl/development/index.html`, your local changes will lost when you run `grunt` command.
 3. run `grunt serve` to open a development webserve on port 9001
 4. open `http://localhost:9001/index.html#/index`
 
