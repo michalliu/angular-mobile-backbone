@@ -33,6 +33,7 @@ var m = Math,
     // Browser capabilities
 	isAndroid = (/android/gi).test(navigator.appVersion),
 	isIDevice = (/iphone|ipad/gi).test(navigator.appVersion),
+	isIDevice7 = (/(iPad|iPhone);.*CPU.*OS 7_\d/i).test(navigator.appVersion),
 	isTouchPad = (/hp-tablet/gi).test(navigator.appVersion),
 
     has3d = prefixStyle('perspective') in dummyStyle,
@@ -88,6 +89,12 @@ var m = Math,
 		that.wrapper = typeof el == 'object' ? el : doc.getElementById(el);
 		that.wrapper.style.overflow = 'hidden';
 		that.scroller = that.wrapper.children[0];
+
+		if (isIDevice7) {
+			var ios7Class="iscroll-ios7";
+			addClass(that.scroller, ios7Class);
+			addCSSRule(null,"."+ios7Class+" > *","-webkit-transform: translate3d(0, 0, 0);");
+		}
 
 		// Default options
 		that.options = {
@@ -187,6 +194,48 @@ var m = Math,
 		if (that.options.checkDOMChanges) that.checkDOMTime = setInterval(function () {
 			that._checkDOMChanges();
 		}, 500);
+
+		function hasClass(ele,cls) {
+			return ele.className.match(new RegExp('(\\s|^)'+cls+'(\\s|$)'));
+		}
+		
+		function addClass(ele,cls) {
+			if (!hasClass(ele,cls)) ele.className += (ele.className?" ":"")+cls;
+		}
+
+		function removeClass(ele,cls) {
+			if (hasClass(ele,cls)) {
+				var reg = new RegExp('(\\s|^)'+cls+'(\\s|$)');
+				ele.className=ele.className.replace(reg,' ');
+			}
+		}
+		function addCSSRule(sheet, selector, rules) {
+			var index;
+			sheet = sheet || document.styleSheets[0];
+			if (sheet) {
+				index = sheet.rules.length;
+				if(sheet.insertRule) {
+					sheet.insertRule(selector + "{" + rules + "}", index);
+				}
+				else {
+					sheet.addRule(selector, rules, index);
+				}
+			} else {
+				var style = document.createElement('style');
+				var code = selector + "{" + rules + "}";
+				style.type = 'text/css';
+
+				if (style.styleSheet) {
+					// IE
+					style.styleSheet.cssText = code;
+				} else {
+					// Other browsers
+					style.innerHTML = code;
+				}
+
+				document.getElementsByTagName("head")[0].appendChild( style );
+			}
+		}
 	};
 
 // Prototype
@@ -254,7 +303,7 @@ iScroll.prototype = {
 			}
 			else {
 				bar.style.cssText = 'position:absolute;z-index:100;' + (dir == 'h' ? 'height:7px;bottom:1px;left:2px;right:' + (that.vScrollbar ? '7' : '2') + 'px' : 'width:7px;bottom:' + (that.hScrollbar ? '7' : '2') + 'px;top:2px;right:1px');
-				bar.className="iscrollbar";
+				bar.className="iscroll-scrollbar";
 			}
 
 			bar.style.cssText += ';pointer-events:none;' + cssVendor + 'transition-property:opacity;' + cssVendor + 'transition-duration:' + (that.options.fadeScrollbar ? '350ms' : '0') + ';overflow:hidden;opacity:' + (that.options.hideScrollbar ? '0' : '1');
