@@ -90,10 +90,13 @@ var m = Math,
 		that.wrapper.style.overflow = 'hidden';
 		that.scroller = that.wrapper.children[0];
 
+		var scrollerClass="iscroll-scroller";
+		addClass(that.scroller, scrollerClass);
+
 		if (isIDevice7) {
 			var ios7Class="iscroll-ios7";
 			addClass(that.scroller, ios7Class);
-			addCSSRule(null,"."+ios7Class+" > *","-webkit-transform: translate3d(0, 0, 0);");
+			addCSSRule(null,"."+ios7Class+" *","-webkit-transform: translate3d(0, 0, 0);");
 		}
 
 		// Default options
