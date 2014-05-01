@@ -10,15 +10,15 @@
 		$scope.items=[];
 
 		$timeout(function () {
-			$scope.items=new Array(40);
+			$scope.items=new Array(60);
 		}, 1000);
 
 		$scope.$watch("items", iScrollRefresh);
 
 		function iScrollRefresh(){
 			$timeout(function () {
-				if ($scope.myScroll && $scope.myScroll.pageViewScroll) {
-					$scope.myScroll.pageViewScroll.refresh();
+				if ($scope.myScroll && $scope.myScroll.indexViewScroll) {
+					$scope.myScroll.indexViewScroll.refresh();
 				}
 			},0);
 		}

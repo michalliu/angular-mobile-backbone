@@ -1,5 +1,7 @@
+<div ng-iscroll="indexViewScroll" style="position:absolute;width:100%;height:100%;">
 <ul>
   <li><a ng-click="navigate('/index/module/a')">Welcome</a></li>
   <li><a ng-click="navigate('/index/module/b')">Multiple Level views</a></li>
   <li ng-repeat="item in items track by $index">item {{$index}}</li>
 </ul>
+</div>

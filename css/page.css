@@ -1,9 +1,5 @@
 html body ul{padding:0;margin:0;}
-/*header*/
-.header{position:absolute;top:0;left:0;right:0;height:40px;line-height:40px;width:100%;background:red;color:white;text-align:center;}
-/*footer*/
-.footer{position:absolute;bottom:0;left:0;right:0;height:40px;line-height:40px;width:100%;background:red;color:white;text-align:center;}
-/*body*/
-.pageViewWrapper{position:absolute;top:40px;left:0;bottom:40px;width:100%;background:green;overflow:hidden;}
+.pageViewWrapper{position:absolute;top:0;left:0;bottom:0;width:100%;background:green;overflow:hidden;}
+.pageViewPort{width:100%;height:100%;position:absolute;-webkit-transform:translate3d(0,0,0);-webkit-backface-visibility: hidden;-webkit-perspective: 1000;}
 /*scroll content*/
 .pageViewPort > :first-child{background:yellow;min-height:100%;}
