@@ -2,13 +2,12 @@
 <div class="indexViewHeader">Header</div>
 <div ng-iscroll="indexViewScroll" class="indexViewScrollView">
     <div>
-		<div class="indexViewPullDown" id="indexViewPullDown">{{pullDownMessage}}</div>
         <ul>
             <li><a ng-click="navigate('/index/module/a')">Welcome</a></li>
             <li><a ng-click="navigate('/index/module/b')">Multiple Level views</a></li>
+            <li><a ng-click="navigate('/index/module/pulldown2refresh')">pulldown2refresh</a></li>
 			<li ng-repeat="item in items track by $index">{{item || "item"}} {{$index}}</li>
         </ul>
     </div>
 </div>
-<div class="indexViewFooter"></div>
 <div class="indexViewFooter">Footer</div>
