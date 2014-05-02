@@ -1,9 +1,14 @@
-<div ng-iscroll="indexViewScroll" id="indexControll">
-    <div id="indexViewScroller">
-        <ul class="indexViewContent">
+<div class="indexViewHeader"></div>
+<div class="indexViewHeader">Header</div>
+<div ng-iscroll="indexViewScroll" class="indexViewScrollView">
+    <div>
+		<div class="indexViewPullDown" id="indexViewPullDown">{{pullDownMessage}}</div>
+        <ul>
             <li><a ng-click="navigate('/index/module/a')">Welcome</a></li>
             <li><a ng-click="navigate('/index/module/b')">Multiple Level views</a></li>
 			<li ng-repeat="item in items track by $index">{{item || "item"}} {{$index}}</li>
         </ul>
     </div>
 </div>
+<div class="indexViewFooter"></div>
+<div class="indexViewFooter">Footer</div>
