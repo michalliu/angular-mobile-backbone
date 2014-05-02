@@ -1,5 +1,3 @@
 html body ul{padding:0;margin:0;}
 .pageViewWrapper{position:absolute;top:0;left:0;bottom:0;width:100%;background:green;overflow:hidden;}
 .pageViewPort{width:100%;height:100%;position:absolute;-webkit-transform:translate3d(0,0,0);-webkit-backface-visibility: hidden;-webkit-perspective: 1000;}
-/*scroll content*/
-.pageViewPort > :first-child{background:yellow;min-height:100%;}
