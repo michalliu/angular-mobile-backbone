@@ -24,7 +24,7 @@ module.exports = function(grunt){
 					separator: ';\n'
 				},
 				files:{
-					"temp/js/lib.js" : ["js/lib/zepto.js","js/lib/iscroll.js","js/lib/angular.js","js/lib/*.js"],
+					"temp/js/lib.js" : ["js/lib/iscroll.js","js/lib/zepto.js","js/lib/zepto-fx.js","js/lib/angular.js","js/lib/*.js"],
 					"temp/js/page.js": ["js/app.js","js/providers/*.js","js/controllers/**/*.js"]
 				}
 			},
