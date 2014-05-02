@@ -1,0 +1,13 @@
+<div class="subViewHeader">Pull up for result</div>
+<div ng-iscroll="subViewScroll" class="subViewScrollView">
+    <div>
+		<button ng-click="askName()">askName</button>
+		hi {{name}}
+    </div>
+</div>
+<div class="subViewFooter">Footer</div>
+<!-- pull up dialog-->
+<div ng-show="showNamePullup" class="subView pullupView">
+	<input ng-model="name"></input>
+	<button ng-click="closePopup()">Close</button>
+</div>

@@ -55,6 +55,11 @@
 			controller:"Pulldown2RefreshControl",
 			resolve:resolve
 		}).
+		when("/index/module/pullup4result",{
+			templateUrl: "views/pullup4result.html",
+			controller:"Pullup4ResultControl",
+			resolve:resolve
+		}).
 		otherwise({
 			redirectTo:entry
 		});

@@ -1,11 +1,11 @@
-<div class="indexViewHeader"></div>
 <div class="indexViewHeader">Header</div>
 <div ng-iscroll="indexViewScroll" class="indexViewScrollView">
     <div>
         <ul>
             <li><a ng-click="navigate('/index/module/a')">Welcome</a></li>
             <li><a ng-click="navigate('/index/module/b')">Multiple Level views</a></li>
-            <li><a ng-click="navigate('/index/module/pulldown2refresh')">pulldown2refresh</a></li>
+            <li><a ng-click="navigate('/index/module/pulldown2refresh')">pulldown to refresh</a></li>
+            <li><a ng-click="navigate('/index/module/pullup4result')">pullup for result</a></li>
 			<li ng-repeat="item in items track by $index">{{item || "item"}} {{$index}}</li>
         </ul>
     </div>
