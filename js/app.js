@@ -50,6 +50,11 @@
 			controller:"BIdControl",
 			resolve:resolve
 		}).
+		when("/index/module/pulldown2refresh",{
+			templateUrl: "views/pulldown2refresh.html",
+			controller:"Pulldown2RefreshControl",
+			resolve:resolve
+		}).
 		otherwise({
 			redirectTo:entry
 		});
