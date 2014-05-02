@@ -1,12 +1,12 @@
-<div class="pRefreshViewHeader"></div>
-<div class="pRefreshViewHeader">Pull down to refresh demo</div>
-<div ng-iscroll="pRefreshViewScroll" class="pRefreshViewScrollView">
+<div class="subViewHeader"></div>
+<div class="subViewHeader">Pull down to refresh demo</div>
+<div ng-iscroll="pRefreshViewScroll" class="subViewScrollView">
     <div>
-		<div class="pRefreshViewPullDown" id="pRefreshViewPullDown">{{pullDownMessage}}</div>
+		<div class="subViewPullDown" id="pRefreshViewPullDown">{{pullDownMessage}}</div>
         <ul>
 			<li ng-repeat="item in items track by $index">{{item || "item"}}</li>
         </ul>
     </div>
 </div>
-<div class="pRefreshViewFooter"></div>
-<div class="pRefreshViewFooter">Footer</div>
+<div class="subViewFooter"></div>
+<div class="subViewFooter">Footer</div>
