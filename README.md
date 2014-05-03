@@ -26,7 +26,7 @@ Dependencies:
 * angular-touch
 * [angular-jquery-cookies](https://github.com/michalliu/angular-jquery-cookies/tree/angular)
 * [iScroll](https://github.com/michalliu/iscroll/tree/dev_4.2.5) (v4.2.5 modified)
-* [ng-iScroll](https://github.com/michalliu/ng-iScroll)
+* [ng-iScroll](https://github.com/michalliu/ng-iScroll) (modified)
 * zeptojs
 
 How to use
