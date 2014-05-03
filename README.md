@@ -3,7 +3,7 @@ angular-mobile-backbone
 
 Everything you need to develop an angular application on mobile(iOS and Android)
 
-This a bootstrapping app using angularjs designed for mobile devices(android and ios). You can create your awesome angular appbase on it. we will keep improving it.
+This a bootstrapping app using angularjs designed for mobile devices(android and ios). You can create your awesome angular app based on it. we will keep improving it.
 
 
 
@@ -20,11 +20,13 @@ It doesn't contains:
 Hint, [Mobile angular UI](http://mobileangularui.com/) does provides UI.
 
 Dependencies:
-* angularjs
+* [angularjs](https://github.com/michalliu/angular.js) (v1.3 slight modified)
 * angular-animate
 * angular-route
 * angular-touch
-* angular-jquery-cookies
+* [angular-jquery-cookies](https://github.com/michalliu/angular-jquery-cookies/tree/angular)
+* [iScroll](https://github.com/michalliu/iscroll/tree/dev_4.2.5) (v4.2.5 modified)
+* [ng-iScroll](https://github.com/michalliu/ng-iScroll)
 * zeptojs
 
 How to use

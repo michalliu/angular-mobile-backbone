@@ -9,3 +9,5 @@ angular.module("app", ["jqCookies"]).
 		// The interfaces are same with jquery cookie plugin
 }]);
 ```
+
+Repo is at https://github.com/michalliu/angular-jquery-cookies/tree/angular
