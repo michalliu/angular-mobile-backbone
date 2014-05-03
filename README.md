@@ -48,7 +48,7 @@ Development Tips
 ================
 
 ####Folder structure
-1. `/css`              contains your css files, a default `page.css` is provided to support animation
+1. `/css`              contains your css files, a default `page.css` is provided
 2. `/js/libs/`         contains javascript libraries
 3. `/js/controllers/`  contains angular controllers
 4. `/js/providers/`    contains directives,filters,default page provider,dynamic generated template provider
