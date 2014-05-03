@@ -24,10 +24,10 @@
 }
 .pageViewPort:first-child{z-index:2;}
 .pageViewPort:last-child{z-index:1;}
-.slideLeft.ng-enter{-webkit-animation:  enterRight2Left 450ms;}
-.slideLeft.ng-leave{-webkit-animation:  leaveRight2Left 450ms;}
-.slideRight.ng-enter{-webkit-animation: enterLeft2Right 450ms;}
-.slideRight.ng-leave{-webkit-animation: leaveLeft2Right 450ms;}
+.slideLeft.ng-enter{-webkit-animation:  enterRight2Left 400ms cubic-bezier(.10, .70, .10, 1);}
+.slideLeft.ng-leave{-webkit-animation:  leaveRight2Left 400ms cubic-bezier(.10, .70, .10, 1);}
+.slideRight.ng-enter{-webkit-animation: enterLeft2Right 400ms cubic-bezier(.10, .70, .10, 1);}
+.slideRight.ng-leave{-webkit-animation: leaveLeft2Right 400ms cubic-bezier(.10, .70, .10, 1);}
 .slideLeft.ng-leave .iscroll-scrollbar,
 .slideLeft.ng-enter .iscroll-scrollbar,
 .slideRight.ng-leave .iscroll-scrollbar,

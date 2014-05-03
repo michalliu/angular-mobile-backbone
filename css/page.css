@@ -10,5 +10,5 @@ html body ul{padding:0;margin:0;}
 
 .subView.pullupView{background:purple;-webkit-transform:translate3d(0,0,0);-webkit-backface-visibility: hidden;-webkit-perspective: 1000;}
 .subView.pullupView.ng-hide-remove,.subView.pullupView.ng-hide-add{display:block !important;}
-.subView.pullupView.ng-hide-remove{-webkit-transform:translate3d(0,100%,0);/*iOS7 requires the initial state*/-webkit-animation:  enterBottom2Top 450ms;}
-.subView.pullupView.ng-hide-add{-webkit-animation:  leaveTop2Bottom 450ms;}
+.subView.pullupView.ng-hide-remove{-webkit-transform:translate3d(0,100%,0);/*iOS7 requires the initial state*/-webkit-animation:  enterBottom2Top 400ms cubic-bezier(.10, .70, .10, 1);}
+.subView.pullupView.ng-hide-add{-webkit-animation:  leaveTop2Bottom 400ms cubic-bezier(.10, .70, .10, 1);}
