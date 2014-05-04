@@ -1,7 +1,7 @@
 angular-mobile-backbone
 ========================
 
-Everything you need to develop an angular application on mobile(iOS and Android)
+Everything you need to develop an angular application on mobile(iOS and Android). [Online demo](http://michalliu.github.io/angular-mobile-backbone/v1/#/index)
 
 This a bootstrapping app using angularjs designed for mobile devices(android and ios). You can create your awesome angular app based on it. we will keep improving it.
 
