@@ -1,8 +1,10 @@
 <ion-header-bar class="bar-positive">
-  <button class="button button-clear">Button1</button>
-  <h1 class="title">Title!</h1>
-  <button class="button button-clear">Right Button</button>
+<button class="button button-clear">{{leftButtonLabel}}</button>
+  <h1 class="title">主页</h1>
+  <button class="button button-clear" ng-click="showLoginModal()">{{rightButtonLabel}}</button>
 </ion-header-bar>
-<ion-content>
-  Some content!
+<ion-content has-bouncing="true" class="padding">
+  <ion-list>
+  <ion-item ng-repeat="operation in operations" href="#/{{operation.id}}">{{operation.label}}</ion-item>
+  <ion-list>
 </ion-content>

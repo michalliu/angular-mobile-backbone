@@ -45,6 +45,7 @@ module.exports = function(grunt){
 										"js/app.routes.js",
 										"js/services/*.js",
 										"js/filters/*.js",
+										"js/directives/*.js",
 										"js/controllers/**/*.js"]
 				}
 			},
