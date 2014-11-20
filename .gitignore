@@ -1,0 +1,7 @@
+/index.html
+/jade/config.json
+/node_modules
+/release
+/js/services/views.js
+/temp
+*.swp
