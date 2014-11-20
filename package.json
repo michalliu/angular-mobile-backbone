@@ -1,0 +1,18 @@
+{
+  "name": "Angular mobile backbone",
+  "version": "1.0.0",
+  "description": "Made an angular mobile app as easy as possiable",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-compress": "^0.7.0",
+    "grunt-contrib-concat": "^0.4.0",
+    "grunt-html2js": "^0.2.4",
+    "grunt-contrib-cssmin": "^0.9.0",
+    "grunt-contrib-htmlmin": "^0.2.0",
+    "grunt-contrib-jade": "^0.11.0",
+    "grunt-contrib-copy": "^0.5.0",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-connect": "^0.7.1"
+  }
+}
