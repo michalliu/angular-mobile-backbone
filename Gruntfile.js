@@ -18,10 +18,10 @@ module.exports = function(grunt){
 			main: {
 				options: {
 					base: "",
-					module: 'appTemplateCache'
+					module: 'appViewCache'
 				},
 				src: [ 'views/**/*.html' ],
-				dest: 'js/services/views.js'
+				dest: 'js/services/appViewCache.js'
 			}
 		},
 		// concat js and css files to temp folder
@@ -33,12 +33,18 @@ module.exports = function(grunt){
 				files:{
 					"temp/js/lib.js" : ["lib/zepto/zepto.js",
 										"lib/zepto/zepto-fx.js",
-										"js/lib/angular.js",
+										"lib/ionic/js/ionic.js",
+										"lib/angular/angular.js",
+										"lib/ionic/js/angular/angular-animate.js",
+										"lib/ionic/js/angular/angular-sanitize.js",
+										"lib/ionic/js/angular-ui/angular-ui-router.js",
+										"lib/ionic/js/ionic-angular.js",
 										"js/lib/*.js"],
 					"temp/js/page.js": [
 										"js/app.js",
 										"js/app.routes.js",
 										"js/services/*.js",
+										"js/filters/*.js",
 										"js/controllers/**/*.js"]
 				}
 			},
@@ -47,7 +53,7 @@ module.exports = function(grunt){
 					separator: '\n'
 				},
 				files:{
-					"temp/all.css":["css/ironic.css","css/*.css"]
+					"temp/all.css":["lib/ionic/css/ionic.css","css/*.css"]
 				}
 			}
 		},

@@ -7,15 +7,16 @@ block lasthead
   link(rel="stylesheet", href=cdn + "css/page.css")
 
 block footer
+  script(src=cdn + "lib/zepto/zepto.js")
+  script(src=cdn + "lib/zepto/zepto-fx.js")
   script(src=cdn + "lib/ionic/js/ionic.js")
   script(src=cdn + "lib/angular/angular.js")
   script(src=cdn + "lib/ionic/js/angular/angular-animate.js")
   script(src=cdn + "lib/ionic/js/angular/angular-sanitize.js")
   script(src=cdn + "lib/ionic/js/angular-ui/angular-ui-router.js")
   script(src=cdn + "lib/ionic/js/ionic-angular.js")
-  script(src=cdn + "lib/zepto/zepto.js")
   script(src=cdn + "js/app.js")
   script(src=cdn + "js/app.routes.js")
   script(src=cdn + "js/controllers/index.js")
   script.
-    angular.module('appTemplateCache', []);//prevent error on dev mode
+    angular.module('appViewCache', []);//prevent error on dev mode

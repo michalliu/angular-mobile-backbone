@@ -1,7 +1,10 @@
 /* globals angular */
 ;(function () {
 	angular
-		.module("app", ["ionic"])
+		.module("app", [
+			"ionic",
+			"appViewCache"
+			])
 		.run(["$ionicPlatform","$ionicLoading","$rootScope", "$window",
 			function (ionicPlatform, ionicLoading, rootScope) {
 				rootScope.$on('$stateChangeStart', function () {
