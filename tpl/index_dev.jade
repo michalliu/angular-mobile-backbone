@@ -1,27 +1,21 @@
 extends layout/common
 
 block firsthead
-  script(src=cdn + "js/head/parallel/error-collector.js")
+  link(rel="stylesheet", href=cdn + "lib/ionic/css/ionic.css")
 
 block lasthead
   link(rel="stylesheet", href=cdn + "css/page.css")
 
 block footer
-  script(src=cdn + "js/lib/angular.js")
-  script(src=cdn + "js/lib/angular-upload.js")
-  script(src=cdn + "js/lib/jquery-1.11.1.js")
-  script(src=cdn + "js/lib/bootstrap-datepicker.js")
-  script(src=cdn + "js/lib/parallel/angular-route.js")
-  script(src=cdn + "js/lib/parallel/angular-jquery-cookies.js")
-  script(src=cdn + "js/lib/parallel/placeholder.js")
+  script(src=cdn + "lib/ionic/js/ionic.js")
+  script(src=cdn + "lib/angular/angular.js")
+  script(src=cdn + "lib/ionic/js/angular/angular-animate.js")
+  script(src=cdn + "lib/ionic/js/angular/angular-sanitize.js")
+  script(src=cdn + "lib/ionic/js/angular-ui/angular-ui-router.js")
+  script(src=cdn + "lib/ionic/js/ionic-angular.js")
+  script(src=cdn + "lib/zepto/zepto.js")
   script(src=cdn + "js/app.js")
-  script(src=cdn + "js/providers/page.js")
-  script(src=cdn + "js/providers/filters.js")
-  script(src=cdn + "js/providers/chatlist.js")
-  script(src=cdn + "js/controllers/login.js")
-  script(src=cdn + "js/controllers/room.js")
-  script(src=cdn + "js/controllers/liveshow.js")
+  script(src=cdn + "js/app.routes.js")
   script(src=cdn + "js/controllers/index.js")
-  script(src=cdn + "js/controllers/error.js")
   script.
     angular.module('appTemplateCache', []);//prevent error on dev mode

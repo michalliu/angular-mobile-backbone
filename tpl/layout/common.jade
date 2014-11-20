@@ -8,9 +8,10 @@ html
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-status-bar-style",content="black")
     title Project Title
-    block first_head
-    block last_head
-  body
+    block firsthead
+    block lasthead
+  body(ng-app="app")
+    ion-nav-view
     block content
   block footer
   <!--lastupdate #{lastupdate}-->

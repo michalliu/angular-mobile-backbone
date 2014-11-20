@@ -1,7 +1,6 @@
 /*globals module,require*/
 module.exports = function(grunt){
 	var tempfolder="./temp/";
-	var assetsfolder="./assets/";
 	var releasefolder="./release/";
 	var jadedata=function(){
 		var config = require("./tpl/config.json");
@@ -32,8 +31,15 @@ module.exports = function(grunt){
 					separator: ';\n'
 				},
 				files:{
-					"temp/js/lib.js" : ["js/lib/zepto.js","js/lib/zepto-fx.js","js/lib/angular.js","js/lib/*.js"].map(function (v) { return assetsfolder + v;}),
-					"temp/js/page.js": ["js/app.js","js/app.route.js","js/services/*.js","js/controllers/**/*.js"]
+					"temp/js/lib.js" : ["lib/zepto/zepto.js",
+										"lib/zepto/zepto-fx.js",
+										"js/lib/angular.js",
+										"js/lib/*.js"],
+					"temp/js/page.js": [
+										"js/app.js",
+										"js/app.routes.js",
+										"js/services/*.js",
+										"js/controllers/**/*.js"]
 				}
 			},
 			css:{
@@ -41,7 +47,7 @@ module.exports = function(grunt){
 					separator: '\n'
 				},
 				files:{
-					"temp/all.css":["css/page.css","css/*.css"]
+					"temp/all.css":["css/ironic.css","css/*.css"]
 				}
 			}
 		},
@@ -131,13 +137,12 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	//grunt.loadNpmTasks('grunt-contrib-compress');
 
-	grunt.registerTask('html',['includereplace']);
 	grunt.registerTask('release_css',['concat:css','cssmin']);
 	grunt.registerTask('release_js',['html2js','concat:js','uglify']);
 	grunt.registerTask('release_jscss',['html2js','concat','uglify','cssmin']);
-	grunt.registerTask('release_html',['html','htmlmin']);
+	grunt.registerTask('release_html',['jade:release','htmlmin']);
 	grunt.registerTask('release',['release_jscss','release_html']);
-	grunt.registerTask('clean',['clean:temp']);
-	grunt.registerTask('default',['release']);
+	grunt.registerTask('debug',['jade:debug']);
+	grunt.registerTask('default',['release','clean:temp']);
 	grunt.registerTask('serve',['connect']);
 };
