@@ -2,9 +2,9 @@
 ;(function () {
 	angular
 		.module("app")
-		.controller("Index", ["$scope", "$ionicModal", index]);
+		.controller("Index", ["$scope", "$ionicModal", "pageService", index]);
 
-	function index(scope, modal) {
+	function index(scope, modal, page) {
 		scope.operations = [
 				{label: 'MenuOne', id: 'menuOne'},
 				{label: 'MenuTwo', id: 'menuTwo'},
@@ -26,9 +26,9 @@
 		};
 
 		scope.formdata = {}; //
-		scope.register = function () {
+		scope.submit = function () {
 			// TODO: send register request
-			console.log("nickName -> " + scope.formdata.nickName);
+			page.dialog.alert("Your NickName is <b>" + scope.formdata.nickName + "</b>", "Thanks");
 		};
 
 		//Cleanup the modal when we're done with it!

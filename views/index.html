@@ -1,10 +1,32 @@
-<ion-header-bar class="bar-positive">
-<button class="button button-clear">{{leftButtonLabel}}</button>
-  <h1 class="title">Title</h1>
-  <button class="button button-clear" ng-click="showLoginModal()">{{rightButtonLabel}}</button>
-</ion-header-bar>
-<ion-content has-bouncing="true" class="padding">
-  <ion-list>
-  <ion-item ng-repeat="operation in operations" href="#/{{operation.id}}">{{operation.label}}</ion-item>
-  <ion-list>
-</ion-content>
+<ion-tabs class="tabs-icon-only tabs-positive">
+  <ion-tab title="Home" 
+           icon-on="ion-ios7-filing" 
+           icon-off="ion-ios7-filing-outline">
+    <ion-header-bar class="bar-positive">
+    <button class="button button-clear">{{leftButtonLabel}}</button>
+      <h1 class="title">Title</h1>
+      <button class="button button-clear" ng-click="showLoginModal()">{{rightButtonLabel}}</button>
+    </ion-header-bar>
+    <ion-content has-bouncing="true" class="padding">
+      <ion-list>
+      <ion-item ng-repeat="operation in operations" href="#/{{operation.id}}">{{operation.label}}</ion-item>
+      <ion-list>
+    </ion-content>
+  </ion-tab>
+  <ion-tab title="About" icon-on="icon ion-ios7-clock" icon-off="icon ion-ios7-clock-outline">
+    <header class="bar bar-header bar-positive">
+      <h1 class="title">Deadlines</h1>
+    </header>
+    <ion-content has-header="true">
+      <h1>Deadlines</h1>
+    </ion-content>
+  </ion-tab>
+  <ion-tab title="Settings" icon-on="icon ion-ios7-gear" icon-off="icon ion-ios7-gear-outline">
+    <header class="bar bar-header bar-positive">
+      <h1 class="title">Settings</h1>
+    </header>
+    <ion-content has-header="true">
+      <h1>Settings</h1>
+    </ion-content>
+  </ion-tab>
+</ion-tabs>

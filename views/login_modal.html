@@ -1,16 +1,16 @@
 <div class="modal">
     <ion-header-bar class="bar bar-header bar-positive">
-        <h1 class="title">新用户注册</h1>
-        <button class="button button-clear button-primary" ng-click="loginModal.hide()">取消</button>
+        <h1 class="title">Dialog</h1>
+        <button class="button button-clear button-primary" ng-click="loginModal.hide()">Cancel</button>
     </ion-header-bar>
     <ion-content>
         <div class="padding">
             <div class="list">
                 <label class="item item-input">
-                    <span class="input-label">昵称</span>
+                    <span class="input-label">NickName</span>
                     <input ng-model="formdata.nickName" type="text"/>
                 </label>
-                <button class="button button-full button-positive" ng-click="register()">注册</button>
+                <button class="button button-full button-positive" ng-click="submit()">Submit</button>
             </div>
         </div>
     </ion-content>
