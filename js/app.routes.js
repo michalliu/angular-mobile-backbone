@@ -10,9 +10,9 @@
 				controller: "Index"
 			});
 			stateProvider.state("addwish", {
-                url: "/addwish",
-				templateUrl: "views/addwish.html",
-				controller: "AddWish"
+                url: "/menuOne",
+				templateUrl: "views/menu_one.html",
+				controller: "MenuOne"
 			});
 			urlRouterProvider.otherwise("/index");
 		}]);

@@ -6,13 +6,13 @@
 
 	function index(scope, modal) {
 		scope.operations = [
-				{label: '写愿望', id: 'addwish'},
-				{label: '愿望列表', id: 'wishlist'},
-				{label: '联系人列表', id: 'sessionlist'},
-				{label: '我的主页', id: 'profile'}
+				{label: 'MenuOne', id: 'menuOne'},
+				{label: 'MenuTwo', id: 'menuTwo'},
+				{label: 'MenuThree', id: 'menuThree'},
+				{label: 'MenuFour', id: 'menuFour'}
 		];
-		scope.leftButtonLabel="未找到";
-		scope.rightButtonLabel="未登录";
+		scope.leftButtonLabel="LeftButton";
+		scope.rightButtonLabel="RightButton";
 
 		modal.fromTemplateUrl('views/login_modal.html', {
 			animation: "slide-in-up",

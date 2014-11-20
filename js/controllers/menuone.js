@@ -4,9 +4,9 @@
 
 	angular
 		.module("app")
-		.controller("AddWish", ["$scope","pageService", addWish]);
+		.controller("MenuOne", ["$scope","pageService", MenuOne]);
 
-	function addWish(scope, page) {
+	function MenuOne(scope, page) {
 		scope.back = function () {
 			page.navigation.toHome();
 		};
