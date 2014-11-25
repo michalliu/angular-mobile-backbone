@@ -13,11 +13,11 @@
 		page = {
 			// navigation utilities
 			navigation: {
-				redirectTo: function (url) {
+				redirect: function (url) {
 					loc.path(url);
 				},
 				toHome: function () {
-					loc.path("/index");
+					loc.path("/home");
 				}
 			},
 			dialog: {

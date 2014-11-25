@@ -14,9 +14,15 @@ html
     block lasthead
   body(ng-app="app")
     ion-nav-bar.bar-positive.nav-title-slide-ios7
-      ion-nav-back-button.button-clear
-        i.ion-arrow-left-c Back
+      ion-nav-back-button.button-icon.ion-arrow-left-c
     ion-nav-view
+    div.tabs.tabs-icon-top.tabs-positive
+      a.tab-item(href="#/home/")
+        i.icon.ion-home
+        |  Tab1
+      a.tab-item(href="#/detail")
+        i.icon.ion-star
+        | Tab2
     block content
   block footer
   <!--lastupdate #{lastupdate}-->
