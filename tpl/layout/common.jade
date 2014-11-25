@@ -13,7 +13,9 @@ html
       <?cs var:Page.data ?>
     block lasthead
   body(ng-app="app")
-    ion-nav-bar(class="bar-positive",animation="nav-title-slide-ios7")
+    ion-nav-bar.bar-positive.nav-title-slide-ios7
+      ion-nav-back-button.button-clear
+        i.ion-arrow-left-c Back
     ion-nav-view
     block content
   block footer

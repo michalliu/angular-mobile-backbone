@@ -4,16 +4,14 @@
 	angular
 		.module("app")
 		.config(["$stateProvider","$urlRouterProvider", function (stateProvider, urlRouterProvider) {
-			stateProvider.state("index", {
-                url: "/index",
-				templateUrl: "views/index.html",
-				controller: "Index"
+			stateProvider.state("home", {
+                url: "/",
+				templateUrl: "views/home.html"
 			});
-			stateProvider.state("addwish", {
-                url: "/menuOne",
-				templateUrl: "views/menu_one.html",
-				controller: "MenuOne"
+			stateProvider.state("detail", {
+                url: "/",
+				templateUrl: "views/detail.html"
 			});
-			urlRouterProvider.otherwise("/index");
+			urlRouterProvider.otherwise("/");
 		}]);
 })();
