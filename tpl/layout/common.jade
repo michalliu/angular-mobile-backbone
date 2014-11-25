@@ -9,8 +9,11 @@ html
     meta(name="apple-mobile-web-app-status-bar-style",content="black")
     title Project Title
     block firsthead
+    script(type="text/cs-data" id="globalData").
+      <?cs var:Page.data ?>
     block lasthead
   body(ng-app="app")
+    ion-nav-bar(class="bar-positive",animation="nav-title-slide-ios7")
     ion-nav-view
     block content
   block footer
