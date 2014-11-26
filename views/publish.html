@@ -1,5 +1,50 @@
-<ion-view title="Publish">
-    <ion-content>
-	Publish Content
-    </ion-content>
-</ion-view>
+<ion-view title="发起约会">
+	<ion-content>
+	<div class="list">
+
+	<a class="item item-icon-left x-item-input" href="javascript:void(0);">
+	<i class="icon ion-clock"></i>
+	时间
+	<input type="date" ng-model="formData.date"></input>
+	</a>
+
+	<a class="item item-icon-left item-select" href="javascript:void(0);">
+	<i class="icon ion-pricetags"></i>
+	类型
+	<select ng-model="formData.type" ng-options="type.name for type in typeList">
+	</select>
+	</a>
+
+	<a class="item item-icon-left item-icon-right item-select" href="javascript:void(0);">
+	<i class="icon ion-map"></i>
+	城市
+	<select ng-model="formData.city" ng-options="city.name for city in cityList">
+	</select>
+	</a>
+
+	<a class="item item-icon-left item-icon-right item-select" href="javascript:void(0);">
+	<i class="icon ion-film-marker"></i>
+	影院
+	<select ng-model="formData.theater" ng-options="(theater.area_name + ' - ' + theater.name) for theater in theaterList">
+	</select>
+	</a>
+
+	<a class="item item-icon-left item-select" href="javascript:void(0);">
+	<i class="icon ion-person-stalker"></i>
+	对象
+	<select ng-model="formData.want" ng-options="want.name for want in wantList">
+	</select>
+	</a>
+
+	<label class="item item-input">
+		<textarea placeholder="留言" ng-model="formData.message"></textarea>
+	</label>
+
+	</div>
+	<div class="padding">
+		<button class="button button-block button-balanced" ng-click="publishEvent()">
+		发起约会
+		</button>
+	</div>
+	</ion-content>
+< /ion-view>

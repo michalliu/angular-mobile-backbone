@@ -24,7 +24,8 @@
 			// Publish
 			stateProvider.state("publish", {
 				url: "/publish",
-				templateUrl: "views/publish.html"
+				templateUrl: "views/publish.html",
+				controller: "PublishControl"
 			});
 
 			// Detail
