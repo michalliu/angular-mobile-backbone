@@ -1,2 +1,23 @@
 ion-nav-view {background-color: white !important;}
-.has-tabs-footer{bottom:49px;}
+.x-has-tabs-footer{bottom:49px;}
+.x-item-input {
+  position: relative; }
+  .x-item-input input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 14px 48px 16px 16px;
+    max-width: 200px;
+	height:100%;
+    border: none;
+    background: #fff;
+    color: #333;
+    text-indent: 0.01px;
+    text-overflow: '';
+    white-space: nowrap;
+    font-size: 14px;
+    cursor: pointer;
+    direction: rtl; }
