@@ -48,7 +48,7 @@
 							uid: page.data.profile.uid,
 							score: 0,
 							theme: 2, // 2为看电影
-							endtime: data.date.toISOString().slice(0,-5).replace("T", " "),
+							endtime: convertTime(data.date),
 							type: data.type.value,
 							city_id: data.city.id,
 							location_id: data.theater.id,
@@ -62,6 +62,15 @@
 				}
 			}
 		};
+
+		function convertTime(d) {
+			var t = d.getTime();
+			var b = new Date();
+			// toISOString 消除了时差，但是后台认为时间是带了是时差的，这里做个补偿
+			// 另外结束时间是到那天的末尾，而不是开始，因此加24小时。比如选择时间是2014-01-01，结束时间应为2014-01-02
+			b.setTime(t + 8 * 3600 * 1000 + 24 * 3600 * 1000);
+			return b.toISOString().slice(0,-5).replace("T", " ");
+		}
 
 		function getCsData(id) {
 			var el = angular.element(doc.getElementById(id));
