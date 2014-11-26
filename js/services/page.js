@@ -28,11 +28,24 @@
 				}
 			},
 			dialog: {
-				alert: function (message,title) {
+				alert: function (message, title, callback) {
 					title = title || "";
-					popup.alert({
+					popup.show({
 						title: title,
-						template: message
+						template: message,
+						scope: null, // Scope (optional). A scope to link to the popup content.
+						buttons: [
+							{
+								text: '<b>确定</b>',
+								type: 'button-positive',
+								onTap: function (e) {
+									if (callback){
+										return callback(e);
+									}
+									return;
+								}
+							}
+						]
 					});
 				}
 			},

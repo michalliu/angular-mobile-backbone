@@ -7,9 +7,10 @@
 			"$timeout",
 			"pageService",
 			"movieDataService",
+			"$ionicNavBarDelegate",
 			publish]);
 
-	function publish(scope, timeout, page, movieData) {
+	function publish(scope, timeout, page, movieData, navbar) {
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
 			{"name": "限女生", "value": 2},
@@ -41,16 +42,6 @@
 			});
 		});
 		scope.publishEvent = function () {
-			page.api.publishWish(scope.formData).
-				success(function publishSuccess(response) {
-					if (response.code === 0) {
-						page.dialog.alert("发表成功");
-					} else {
-						page.dialog.alert("发表失败" + response.message);
-					}
-				}, function publishError() {
-						page.dialog.alert("发表失败");
-				});
 			var message = scope.formData.message;
 			var date = scope.formData.date;
 			if (!date) {
@@ -61,6 +52,24 @@
 				page.dialog.alert("写点儿留言能提高成功率哟");
 				return;
 			}
+
+			page.api.publishWish(scope.formData).
+				success(function publishSuccess(response) {
+					if (response.code === 0) {
+						page.dialog.alert("发表成功", "", onPublishSuccess);
+					} else {
+						page.dialog.alert("发表失败" + response.message);
+					}
+				}).error(function publishError() {
+						page.dialog.alert("发表失败");
+				});
+
+			function onPublishSuccess() {
+				timeout(function () {
+					navbar.back();
+				}, 500);
+			}
+
 		};
 	}
 
