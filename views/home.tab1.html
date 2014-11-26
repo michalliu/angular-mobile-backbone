@@ -1,2 +1,13 @@
-Tab1 content
-{{message}}
+  <div class="card" ng-repeat="item in items">
+      <a class="item item-avatar" href="#">
+      <img src="http://t2.qlogo.cn/mbloghead/eb0496412c5e12b09446/180">
+      <h2>剩余13分钟有效</h2>
+      <p>{{item.location}}</p>
+      <p>求男生 我请客</p>
+	  <div class="padding"><button class="button button-block button-small button-assertive">应征</button></div>
+    </a>
+  </div>
+ <ion-infinite-scroll distance="1%"
+        on-infinite="loadMoreData()"
+        ng-if="!moredata">
+</ion-infinite-scroll>
