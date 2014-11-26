@@ -72,6 +72,16 @@
 							format: "json"
 						}
 					});
+				},
+				getWishList: function (cityId, info) {
+					return http.get("/wish/get_wish_list", {
+						params: {
+							sid: page.data.query.sid,
+							city_id: cityId || 221,
+							attachinfo: info,
+							format: "json"
+						}
+					});
 				}
 			}
 		};
