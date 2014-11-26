@@ -1,3 +1,4 @@
+/* extend ionic style */
 ion-nav-view {background-color: white !important;}
 .x-has-tabs-footer{bottom:49px;}
 .x-item-input {
@@ -28,3 +29,11 @@ ion-nav-view {background-color: white !important;}
   .x-item-input input[type='date'] {
 	opacity:0;
     }
+
+/* private style */
+.publish-event{
+	margin-top:44px;
+}
+.home-content{
+	top:111px; /*44px header + 57px button + 10 margin*/
+}
