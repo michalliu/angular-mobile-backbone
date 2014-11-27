@@ -37,7 +37,8 @@
 			}
 		}
 
-		scope.wishPromise=page.api.getWishDetail(wid).
+		scope.wishPromise=timeout(angular.noop,300).then(function () {
+			return page.api.getWishDetail(wid).
 			success(function (response) {
 				if (response &&
 					response.code === 0 &&
@@ -51,8 +52,8 @@
 			}).error(function publishError() {
 					page.dialog.alert("郁闷，拉取数据失败了");
 			});
+		});		// 报名
 
-		// 报名
 		scope.joinWish = function () {
 			page.api.joinWish(wid).
 				success(function (response) {

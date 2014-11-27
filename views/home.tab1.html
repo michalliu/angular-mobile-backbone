@@ -3,7 +3,8 @@
       <img bo-src="item.logo">
 	  <h2 bo-bind="item.timedesc"></h2>
 	  <p><span bo-bind="item.location"></span><span class="x-small-font" bo-bind="item.location_addr"></span></p>
-	  <p><span bo-bind="item.wantGender"></span><span bo-bind="item.typeDesc"></span></p>
+	  <p bo-bind="item.wantGender"></p>
+	  <p bo-bind="item.typeDesc"></p>
       <button class="button button-block button-small button-assertive" ng-click="goWishDetail(item)">应征</button>
       </div>
   </div>
