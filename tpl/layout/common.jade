@@ -9,7 +9,7 @@ html
     meta(name="apple-mobile-web-app-status-bar-style",content="black")
     title Project Title
     block firsthead
-    script(type="text/cs-data" id="globalData").
+    script(type="text/cs-data" id="profile").
       <?cs var:Page.data ?>
     block lasthead
   body(ng-app="app")
@@ -19,10 +19,10 @@ html
     div.tabs.tabs-icon-top.tabs-positive
       a.tab-item(href="#/home/")
         i.icon.ion-home
-        |  Tab1
-      a.tab-item(href="#/detail")
+        | 帖子
+      a.tab-item(href="#/feeds")
         i.icon.ion-star
-        | Tab2
+        | 消息
     block content
   block footer
   <!--lastupdate #{lastupdate}-->

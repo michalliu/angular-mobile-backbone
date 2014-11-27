@@ -55,7 +55,7 @@
 
 			page.api.publishWish(scope.formData).
 				success(function publishSuccess(response) {
-					if (response.code === 0) {
+					if (response && response.code === 0) {
 						page.dialog.alert("发表成功", "", onPublishSuccess);
 					} else {
 						page.dialog.alert("发表失败" + response.message);

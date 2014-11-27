@@ -29,6 +29,23 @@ ion-nav-view {background-color: white !important;}
   .x-item-input input[type='date'] {
 	opacity:0;
     }
+.x-item-big-avatar{
+	padding-left: 132px;
+	min-height: 132px;
+}
+.x-item-big-avatar > img:first-child{
+	max-width:100px;
+	max-height:100px;
+}
+.x-small-font{
+	font-size:12px;
+}
+.x-no-padding-bottom{
+	padding-bottom:0;
+}
+.x-box-center{
+	text-align:center;
+}
 
 /* private style */
 .publish-event{
@@ -36,4 +53,10 @@ ion-nav-view {background-color: white !important;}
 }
 .home-content{
 	top:111px; /*44px header + 57px button + 10 margin*/
+}
+.detail-pic-slide > img:first-child{
+	max-width:100px;
+}
+.detail-item .badge{
+	right: 16px;
 }

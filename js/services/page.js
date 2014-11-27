@@ -20,7 +20,11 @@
 		page = {
 			// navigation utilities
 			navigation: {
-				redirect: function (url) {
+				redirect: function (url, data) {
+					var path;
+					if (data) {
+						path=loc.search(data);
+					}
 					loc.path(url);
 				},
 				toHome: function () {
@@ -55,6 +59,7 @@
 			},
 			api: {
 				publishWish: function (data) {
+					console.log(page.data);
 					return http.get("/wish/add_wish", {
 						params: {
 							sid: page.data.query.sid,
@@ -73,12 +78,32 @@
 						}
 					});
 				},
+				//TODO: 选择城市
 				getWishList: function (cityId, info) {
 					return http.get("/wish/get_wish_list", {
 						params: {
 							sid: page.data.query.sid,
 							city_id: cityId || 221,
 							attachinfo: info,
+							format: "json"
+						}
+					});
+				},
+				getWishDetail: function (wid) {
+					return http.get("/wish/get_wish_detail", {
+						params: {
+							sid: page.data.query.sid,
+							wid: wid,
+							format: "json"
+						}
+					});
+				},
+				joinWish: function (wid) {
+					return http.get("/wish/join_wish", {
+						params: {
+							sid: page.data.query.sid,
+							wid: wid,
+							type: 1, // 1 报名 2 取消报名
 							format: "json"
 						}
 					});

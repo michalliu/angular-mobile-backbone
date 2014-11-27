@@ -1,11 +1,11 @@
   <div class="card" ng-repeat="item in items">
-      <a class="item item-avatar" href="#">
-      <img src="http://t2.qlogo.cn/mbloghead/eb0496412c5e12b09446/180">
+      <div class="item item-avatar x-item-big-avatar x-no-padding-bottom">
+      <img ng-src="{{item.logo}}">
       <h2>剩余13分钟有效</h2>
-      <p>{{item.location}}</p>
-      <p>求男生 我请客</p>
-	  <div class="padding"><button class="button button-block button-small button-assertive">应征</button></div>
-    </a>
+      <p>{{item.location}} <span class="x-small-font">{{item.location_addr}}</span></p>
+      <p>{{item.wantGender}} {{item.typeDesc}}</p>
+      <button class="button button-block button-small button-assertive" ng-click="goWishDetail(item)">应征</button>
+      </div>
   </div>
  <ion-infinite-scroll distance="1%"
         on-infinite="loadMoreData()"

@@ -31,8 +31,17 @@
 			// Detail
 			stateProvider.state("detail", {
 				url: "/detail",
-				templateUrl: "views/detail.html"
+				templateUrl: "views/detail.html",
+				controller: "DetailControl"
 			});
+
+			// Message
+			stateProvider.state("feeds", {
+				url: "/feeds",
+				templateUrl: "views/feeds.html",
+				controller: "FeedsControl"
+			});
+
 			urlRouterProvider.otherwise("/home/tab1");
 		}]);
 })();

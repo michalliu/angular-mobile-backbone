@@ -1,5 +1,71 @@
-<ion-view title="Detail Page">
-    <ion-content>
-      Detail Content
-    </ion-content>
+<ion-view title="详情">
+	<ion-content>
+		<ion-slide-box on-slide-changed="slideHasChanged($index)">
+			<ion-slide>
+				<div class="box x-box-center detail-pic-slide">
+					<img src="http://img1.gtimg.com/11/1119/111921/11192162_640x640_0.png"></img>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="box x-box-center detail-pic-slide">
+					<img src="http://img1.gtimg.com/11/1119/111921/11192170_640x640_0.png"></img>
+				</div>
+			</ion-slide>
+			<ion-slide>
+				<div class="box x-box-center detail-pic-slide">
+					<img src="http://img1.gtimg.com/11/1119/111921/11192157_640x640_0.png"></img>
+				</div>
+			</ion-slide>
+		</ion-slide-box>
+		<div class="list">
+
+		<a class="item item-icon-left" href="javascript:void(0);">
+			<i class="icon ion-clock"></i>
+			时间
+			<span class="item-note">
+				{{wish.time}}
+			</span>
+		</a>
+	
+		<a class="item item-icon-left" href="javascript:void(0);">
+			<i class="icon ion-map"></i>
+			地点
+			<span class="item-note">
+				{{wish.location_addr}}
+			</span>
+		</a>
+
+		<a class="item item-icon-left" href="javascript:void(0);">
+			<i class="icon ion-pricetags"></i>
+			类型
+			<span class="item-note">
+				{{wish.typeDesc}}
+			</span>
+		</a>
+	
+		<a class="item item-icon-left" href="javascript:void(0);">
+			<i class="icon ion-person-stalker"></i>
+			要求
+			<span class="item-note">
+				{{wish.wantGender}}
+			</span>
+		</a>
+
+		<a class="item item-icon-left detail-item" href="javascript:void(0);">
+			<i class="icon ion-person"></i>
+			应征者
+			<span class="badge badge-assertive">{{wish.joinCount}}</span>
+		</a>
+		</div>
+		<div class="card">
+			<div class="item item-text-wrap">
+				{{wish.message}}
+			</div>
+		</div>
+		<div class="padding">
+			<button class="button button-block button-assertive" ng-click="joinWish()">
+			应征
+			</button>
+		</div>
+	</ion-content>
 </ion-view>
