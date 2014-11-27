@@ -80,8 +80,10 @@
 					nowt.setTime(_nt);
 					nextyear = new Date(nowt.getFullYear() + 1 + "-01-01T00:00:00Z");
 					td.setTime(time * 1000);
-					_t = Math.floor(Math.floor((_t + fix8) / d) - ((_nt + fix8) / d));
-					if (_t < 1) {//今天
+					_t = Math.floor(
+							((_nt + fix8) / d) - Math.floor((_t + fix8) / d)
+							);
+					if (_t === 1) {//今天
 						tmp = "今天" + timeFormatString(td, " {h}:{m}");
 					} else if (td.getTime() < nextyear.getTime()){//年度内
 						tmp = timeFormatString(td, "{M: }月{d: }日").replace(/\s/g, "") + timeFormatString(td, " {h}:{m}");

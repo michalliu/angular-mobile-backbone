@@ -3,7 +3,8 @@
 	angular
 		.module("app", [
 			"ionic",
-			"appViewCache"
+			"appViewCache",
+			"pasvaz.bindonce"
 			])
 		.run(["$ionicPlatform","$ionicLoading","$rootScope", "$window",
 			function (ionicPlatform, ionicLoading, rootScope) {

@@ -59,7 +59,6 @@
 			},
 			api: {
 				publishWish: function (data) {
-					console.log(page.data);
 					return http.get("/wish/add_wish", {
 						params: {
 							sid: page.data.query.sid,

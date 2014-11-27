@@ -46,6 +46,9 @@ ion-nav-view {background-color: white !important;}
 .x-box-center{
 	text-align:center;
 }
+.x-button-hasfooter{
+	margin-bottom:44px !important;
+}
 
 /* private style */
 .publish-event{

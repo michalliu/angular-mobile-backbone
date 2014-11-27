@@ -1,9 +1,9 @@
   <div class="card" ng-repeat="item in items">
-      <div class="item item-avatar x-item-big-avatar x-no-padding-bottom">
-      <img ng-src="{{item.logo}}">
-      <h2>剩余13分钟有效</h2>
-      <p>{{item.location}} <span class="x-small-font">{{item.location_addr}}</span></p>
-      <p>{{item.wantGender}} {{item.typeDesc}}</p>
+      <div class="item item-avatar x-item-big-avatar x-no-padding-bottom" bindonce>
+      <img bo-src="item.logo">
+	  <h2 bo-bind="item.timedesc"></h2>
+	  <p><span bo-bind="item.location"></span><span class="x-small-font" bo-bind="item.location_addr"></span></p>
+	  <p><span bo-bind="item.wantGender"></span><span bo-bind="item.typeDesc"></span></p>
       <button class="button button-block button-small button-assertive" ng-click="goWishDetail(item)">应征</button>
       </div>
   </div>

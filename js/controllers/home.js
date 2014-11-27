@@ -3,7 +3,8 @@
 	angular
 		.module("app")
 		.controller("HomeControl", ["$scope", "$ionicModal", "pageService", home])
-		.controller("HomeTab1Control", ["$scope", "$ionicModal", "$ionicLoading", "pageService", homeTab1]);
+		.controller("HomeTab1Control", ["$scope", "$ionicModal", "$ionicLoading", "pageService",
+			"utilService",homeTab1]);
 
 	function concat(a1, a2) {
 		for (var i=0,l=a2.length,one;i<l;i++) {
@@ -13,45 +14,13 @@
 		return a1;
 	}
 
-	function processWish(data) {
-		var ret = {};
-		ret.logo = data.logo;
-		ret.location = data.location;
-		ret.location_addr = data.location_addr;
-		ret.id = data.wid;
-		if (data.needgender === 2) {
-			ret.wantGender = "仅限女生报名";
-		} else if(data.needgender === 1) {
-			ret.wantGender = "仅限男生应征，非诚勿扰";
-		} else {
-			ret.wantGender = "无要求，开心就好";
-		}
-		if (data.type === 1) {
-			ret.typeDesc="发贴人主动请客";
-		} else if(data.type === 2) {
-			ret.typeDesc="应征者请客";
-		} else {
-			ret.typeDesc="大家AA吧";
-		}
-		return ret;
-	}
-
-	function processWishList(list) {
-		var newList = []; // 简单的list，去除不必要的信息
-		for (var i=0,l=list.length,one;i<l;i++) {
-			one=list[i];
-			newList.push(processWish(one));
-		}
-		return newList;
-	}
-
 	function home(scope, modal, page) {
 		scope.goPublish = function goPublish() {
 			page.navigation.redirect("/publish");
 		};
 	}
 
-	function homeTab1(scope, modal, loading, page) {
+	function homeTab1(scope, modal, loading, page, util) {
 		var attachInfo=""; // 翻页信息位
 		scope.items = [];
 		scope.moredata = false;
@@ -77,5 +46,38 @@
 		scope.goWishDetail = function (item) {
 			page.navigation.redirect("/detail", {id: item.id});
 		};
+
+		function processWish(data) {
+			var ret = {};
+			ret.logo = data.logo;
+			ret.location = data.location;
+			ret.location_addr = data.location_addr;
+			ret.id = data.wid;
+			ret.timedesc = util.dateTime.getTimeDesc(data.endtime).slice(0,-6);
+			if (data.needgender === 2) {
+				ret.wantGender = "仅限女生报名";
+			} else if(data.needgender === 1) {
+				ret.wantGender = "仅限男生应征，非诚勿扰";
+			} else {
+				ret.wantGender = "无要求，开心就好";
+			}
+			if (data.type === 1) {
+				ret.typeDesc="发贴人主动请客";
+			} else if(data.type === 2) {
+				ret.typeDesc="应征者请客";
+			} else {
+				ret.typeDesc="大家AA吧";
+			}
+			return ret;
+		}
+	
+		function processWishList(list) {
+			var newList = []; // 简单的list，去除不必要的信息
+			for (var i=0,l=list.length,one;i<l;i++) {
+				one=list[i];
+				newList.push(processWish(one));
+			}
+			return newList;
+		}
 	}
 })();

@@ -37,7 +37,7 @@
 			}
 		}
 
-		page.api.getWishDetail(wid).
+		scope.wishPromise=page.api.getWishDetail(wid).
 			success(function (response) {
 				if (response &&
 					response.code === 0 &&
