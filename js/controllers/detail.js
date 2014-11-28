@@ -11,15 +11,19 @@
 			"$ionicNavBarDelegate",
 			detail]);
 
+	var lastWid;
+
 	function detail(scope, loc, timeout, page, util, navbar) {
 		var params = loc.search();
-		var wid = params.id;
+		var wid = params.id || lastWid;
+		lastWid = wid;
 		scope.wish = {};
 
 		function handleWishData(wish) {
 			scope.wish.time = util.dateTime.getTimeDesc(wish.endtime).slice(0,-6);
 			scope.wish.location_addr = wish.location;
 			scope.wish.message = wish.content;
+			scope.wish.joinList = wish.joinlist;
 			scope.wish.joinCount = wish.joinlist.length;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";

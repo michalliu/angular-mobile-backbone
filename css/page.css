@@ -49,7 +49,9 @@ ion-nav-view {background-color: white !important;}
 .x-button-hasfooter{
 	margin-bottom:44px !important;
 }
-
+.x-card{
+	margin:10px 10px !important;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;
@@ -62,4 +64,17 @@ ion-nav-view {background-color: white !important;}
 }
 .detail-item .badge{
 	right: 16px;
+}
+.detail-joinlist{
+	position:absolute;
+	top:6px;
+	height:40px;
+	left:111px;
+	right:54px;
+	overflow:hidden;
+	direction:rtl;
+}
+.detail-joinlist img{
+	max-width:40px;
+	max-height:40px;
 }
