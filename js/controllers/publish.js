@@ -67,7 +67,7 @@
 						if (response && response.code === 0) {
 							page.dialog.alert("发表成功", "", onPublishSuccess);
 						} else {
-							page.dialog.alert("发表失败" + response.message);
+							page.dialog.alert("发表失败，" + response.message);
 						}
 					}).error(function publishError() {
 							page.dialog.alert("发表失败");

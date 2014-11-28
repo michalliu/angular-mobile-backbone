@@ -51,7 +51,7 @@
 					// 渲染详情页
 					handleWishData(response.data.wish);
 				} else {
-					page.dialog.alert("郁闷，拉取数据失败了" + response.message);
+					page.dialog.alert("郁闷，拉取数据失败了，" + response.message);
 				}
 			}).error(function publishError() {
 					page.dialog.alert("郁闷，拉取数据失败了");
@@ -66,7 +66,7 @@
 						// 渲染详情页
 						page.dialog.alert("报名成功");
 					} else {
-						page.dialog.alert("报名失败" + response.message);
+						page.dialog.alert("报名失败，" + response.message);
 					}
 				}).error(function publishError() {
 						page.dialog.alert("报名失败");

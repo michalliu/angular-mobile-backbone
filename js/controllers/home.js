@@ -75,7 +75,7 @@
 						}
 						scope.$broadcast('scroll.infiniteScrollComplete');
 					} else {
-						page.dialog.alert("数据加载失败" + res.message);
+						page.dialog.alert("数据加载失败，" + res.message);
 					}
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
