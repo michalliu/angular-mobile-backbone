@@ -70,13 +70,14 @@
 			},
 			api: {
 				publishWish: function (data) {
+					alert(convertTime(data.date,data.time));
 					return http.get("/wish/add_wish", {
 						params: {
 							sid: page.data.query.sid,
 							uid: page.data.profile.uid,
 							score: 0,
 							theme: 2, // 2为看电影
-							endtime: convertTime(data.date),
+							endtime: convertTime(data.date,data.time),
 							type: data.type.value,
 							city_id: data.city.id,
 							location_id: data.theater.id,
@@ -121,13 +122,8 @@
 			}
 		};
 
-		function convertTime(d) {
-			var t = d.getTime();
-			var b = new Date();
-			// toISOString 消除了时差，但是后台认为时间是带了是时差的，这里做个补偿
-			// 另外结束时间是到那天的末尾，而不是开始，因此加24小时。比如选择时间是2014-01-01，结束时间应为2014-01-01 23:59:59
-			b.setTime(t + 8 * 3600 * 1000 + 24 * 3600 * 1000 - 1000);
-			return b.toISOString().slice(0,-5).replace("T", " ");
+		function convertTime(d,t) {
+			return Math.floor(new Date(d + "T" + t + ":00" + "Z").getTime() / 1000);
 		}
 
 		function getCsData(id) {

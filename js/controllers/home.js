@@ -1,4 +1,4 @@
-/*globals angular*/
+/*globals angular,$*/
 ;(function () {
 	angular
 		.module("app")
@@ -28,7 +28,7 @@
 		ret.location = data.location;
 		ret.location_addr = data.location_addr;
 		ret.id = data.wid;
-		ret.timedesc = util.dateTime.getTimeDesc(data.endtime).slice(0,-6);
+		ret.timedesc = util.dateTime.getTimeDesc(data.endtime);
 		if (data.needgender === 2) {
 			ret.wantGender = "仅限女生报名";
 		} else if(data.needgender === 1) {
@@ -64,11 +64,13 @@
 			timeout(angular.noop,500).then(function () {
 				page.api.getWishList(221,attachInfo).success(function (res) {
 					var wishList;
-					if (res && res.code === 0 && res.data && res.data.wishlist) {
+					if (res && res.code === 0 && res.data) {
 						attachInfo = res.data.attachinfo;
 						wishList = res.data.wishlist;
-						scope.items=concat(scope.items, processWishList(wishList, util));
-						if (scope.items.length > 100) { // 最多100条最新数据
+						if (wishList) {
+							scope.items=concat(scope.items, processWishList(wishList, util));
+						}
+						if (scope.items.length > 100 || res.data.hasmore === 0) { // 最多100条最新数据
 							scope.moredata = true; // 不再加载更多
 						}
 						scope.$broadcast('scroll.infiniteScrollComplete');

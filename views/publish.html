@@ -5,8 +5,10 @@
 	<a class="item item-icon-left x-item-input" href="javascript:void(0);">
 	<i class="icon ion-clock"></i>
 	时间
-	<input type="text" placeholder="约个时间吧"></input>
-	<input type="date" onfocus="this.style.opacity=1;" ng-model="formData.date"></input>
+	<input type="text" class="dateSelectPlaceholder" placeholder="选择日期"></input>
+	<input type="text" class="timeSelectPlaceholder" placeholder="选择时间"></input>
+	<input type="date" onfocus="this.style.opacity=1;" id="formDataDate"></input>
+	<input type="time" onfocus="this.style.opacity=1;" id="formDataTime"></input>
 	</a>
 
 	<a class="item item-icon-left item-select" href="javascript:void(0);">

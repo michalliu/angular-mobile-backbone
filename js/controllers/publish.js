@@ -8,9 +8,11 @@
 			"pageService",
 			"movieDataService",
 			"$ionicNavBarDelegate",
+			"$window",
 			publish]);
 
-	function publish(scope, timeout, page, movieData, navbar) {
+	function publish(scope, timeout, page, movieData, navbar, win) {
+		var doc = win.document;
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
 			{"name": "限女生", "value": 2},
@@ -25,6 +27,7 @@
 			city: movieData.hotCityList[3], // 默认选择深圳
 			theater: null,
 			date: null,
+			time: null,
 			type: scope.typeList[0],
 			want: scope.wantList[1],
 			message: ""
@@ -43,8 +46,11 @@
 		});
 		scope.publishEvent = function () {
 			var message = scope.formData.message;
-			var date = scope.formData.date;
-			if (!date) {
+			var dataDate = doc.getElementById("formDataDate").value;
+			var dataTime = doc.getElementById("formDataTime").value;
+			scope.formData.date = dataDate;
+			scope.formData.time = dataTime;
+			if (!dataDate || !dataTime) {
 				page.dialog.alert("还没有填写时间呢");
 				return;
 			}

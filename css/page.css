@@ -12,7 +12,7 @@ ion-nav-view {background-color: white !important;}
     right: 0;
     padding: 0;
     margin: 0;
-    max-width: 200px;
+    max-width: 80px;
 	height:30px;
     border: none;
     background: #fff;
@@ -23,11 +23,27 @@ ion-nav-view {background-color: white !important;}
     font-size: 14px;
     cursor: pointer;
     direction: rtl; }
-  .x-item-input input[type='text'] {
-	padding-right:16px;
+  .x-item-input input[type='text'].timeSelectPlaceholder {
+	right:16px;
+    width: 60px;
+	min-width: 60px;
+    }
+  .x-item-input input[type='text'].dateSelectPlaceholder {
+    width: 80px;
+	min-width: 80px;
+	right:76px;
     }
   .x-item-input input[type='date'] {
 	opacity:0;
+    width: 80px;
+	min-width: 80px;
+	right:76px;
+    }
+  .x-item-input input[type='time'] {
+	opacity:0;
+	right:16px;
+    width: 60px;
+	min-width: 60px;
     }
 .x-item-big-avatar{
 	padding-left: 132px;
