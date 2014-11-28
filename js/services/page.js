@@ -7,12 +7,13 @@
 		.factory("pageService", [
 			"$location",
 			"$ionicPopup",
+			"$ionicLoading",
 			"$window",
 			"$http",
 			"queryStringService",
 			pageService]);
 
-	function pageService(loc, popup, win, http, qs) {
+	function pageService(loc, popup, loading, win, http, qs) {
 
 		var page;
 		var doc = win.document;
@@ -51,6 +52,16 @@
 							}
 						]
 					});
+				},
+				loading: {
+					show: function (message) {
+						loading.show({
+							template: message
+						});
+					},
+					hide: function () {
+						loading.hide();
+					}
 				}
 			},
 			data: {
@@ -114,8 +125,8 @@
 			var t = d.getTime();
 			var b = new Date();
 			// toISOString 消除了时差，但是后台认为时间是带了是时差的，这里做个补偿
-			// 另外结束时间是到那天的末尾，而不是开始，因此加24小时。比如选择时间是2014-01-01，结束时间应为2014-01-02
-			b.setTime(t + 8 * 3600 * 1000 + 24 * 3600 * 1000);
+			// 另外结束时间是到那天的末尾，而不是开始，因此加24小时。比如选择时间是2014-01-01，结束时间应为2014-01-01 23:59:59
+			b.setTime(t + 8 * 3600 * 1000 + 24 * 3600 * 1000 - 1000);
 			return b.toISOString().slice(0,-5).replace("T", " ");
 		}
 

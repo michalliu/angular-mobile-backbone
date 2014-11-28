@@ -53,16 +53,22 @@
 				return;
 			}
 
-			page.api.publishWish(scope.formData).
-				success(function publishSuccess(response) {
-					if (response && response.code === 0) {
-						page.dialog.alert("发表成功", "", onPublishSuccess);
-					} else {
-						page.dialog.alert("发表失败" + response.message);
-					}
-				}).error(function publishError() {
-						page.dialog.alert("发表失败");
-				});
+			page.dialog.loading.show("努力发表中...");
+
+			timeout(function () {
+				page.api.publishWish(scope.formData).
+					success(function publishSuccess(response) {
+						if (response && response.code === 0) {
+							page.dialog.alert("发表成功", "", onPublishSuccess);
+						} else {
+							page.dialog.alert("发表失败" + response.message);
+						}
+					}).error(function publishError() {
+							page.dialog.alert("发表失败");
+					}).always(function () {
+						page.dialog.loading.hide();
+					});
+			},500);
 
 			function onPublishSuccess() {
 				timeout(function () {
