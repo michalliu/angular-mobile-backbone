@@ -18,6 +18,8 @@
 		scope.goPublish = function goPublish() {
 			page.navigation.redirect("/publish");
 		};
+		$(".tab-item").removeClass("x-tab-activated");
+		$("#homeTab1").addClass("x-tab-activated");
 	}
 
 	function processWish(data, util) {

@@ -7,7 +7,7 @@ html
     meta(name="viewport", content="width=device-width,initial-scale=1,minimum-scale=1, maximum-scale=1, user-scalable=no")
     meta(name="apple-mobile-web-app-capable", content="yes")
     meta(name="apple-mobile-web-app-status-bar-style",content="black")
-    title Project Title
+    title 电影会
     block firsthead
     script(type="text/cs-data" id="profile").
       <?cs var:Page.data ?>
@@ -17,10 +17,10 @@ html
       ion-nav-back-button.button-icon.ion-arrow-left-c
     ion-nav-view
     div.tabs.tabs-icon-top.tabs-positive
-      a.tab-item(href="#/home/")
+      a#homeTab1.tab-item(href="#/home/")
         i.icon.ion-home
         | 帖子
-      a.tab-item(href="#/feeds")
+      a#homeTab2.tab-item(href="#/feeds")
         i.icon.ion-star
         | 消息
     block content
