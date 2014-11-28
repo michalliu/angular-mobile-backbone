@@ -20,7 +20,7 @@
 		scope.wish = {};
 
 		function handleWishData(wish) {
-			scope.wish.time = util.dateTime.getTimeDesc(wish.endtime).slice(0,-6);
+			scope.wish.time = util.dateTime.getTimeDesc(wish.endtime);
 			scope.wish.location_addr = wish.location;
 			scope.wish.message = wish.content;
 			scope.wish.joinList = wish.joinlist;
