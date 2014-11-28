@@ -50,7 +50,7 @@
 		<a class="item item-icon-left detail-item" href="javascript:void(0);">
 			<i class="icon ion-person"></i>
 			应征者
-			<div class="detail-joinlist">
+			<div class="detail-joinlist" bo-if="wish.joinCount > 0">
 				<img bo-src="person.logo" height="40" width="40" ng-repeat="person in wish.joinList track by $index">
 			</div>
 			<span class="badge badge-assertive" bo-bind="wish.joinCount"></span>
@@ -59,9 +59,6 @@
 		<div class="card x-card">
 			<div class="item item-text-wrap" bo-bind="wish.message">
 			</div>
-		</div>
-		<div class="padding detail-joinlist" bo-if="wish.joinCount > 0">
-			<img bo-src="person.logo" ng-repeat="person in wish.joinList track by $index">
 		</div>
 		<div class="padding">
 			<button class="button button-block button-assertive x-button-hasfooter" ng-click="joinWish()">
