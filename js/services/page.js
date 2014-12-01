@@ -65,15 +65,13 @@
 				}
 			},
 			data: {
-				profile: getCsData("profile"),
-				query: qs.decode(doc.location.search.slice(1))
+				profile: getCsData("profile")
 			},
 			api: {
 				publishWish: function (data) {
-					alert(convertTime(data.date,data.time));
 					return http.get("/wish/add_wish", {
 						params: {
-							sid: page.data.query.sid,
+							sid: page.profile.sid,
 							uid: page.data.profile.uid,
 							score: 0,
 							theme: 2, // 2为看电影
@@ -93,7 +91,7 @@
 				getWishList: function (cityId, info) {
 					return http.get("/wish/get_wish_list", {
 						params: {
-							sid: page.data.query.sid,
+							sid: page.profile.sid,
 							city_id: cityId || 221,
 							attachinfo: info,
 							format: "json"
@@ -103,7 +101,7 @@
 				getWishDetail: function (wid) {
 					return http.get("/wish/get_wish_detail", {
 						params: {
-							sid: page.data.query.sid,
+							sid: page.profile.sid,
 							wid: wid,
 							format: "json"
 						}
@@ -112,7 +110,7 @@
 				joinWish: function (wid) {
 					return http.get("/wish/join_wish", {
 						params: {
-							sid: page.data.query.sid,
+							sid: page.profile.sid,
 							wid: wid,
 							type: 1, // 1 报名 2 取消报名
 							format: "json"
