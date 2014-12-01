@@ -5,10 +5,12 @@
 	angular
 		.module("app")
 		.factory("utilService", [
+			"$window",
 			utilService]);
 
-	function utilService() {
+	function utilService(win) {
 		var util;
+		var doc = win.document;
 
 		util = {
 			dateTime: {
@@ -99,6 +101,16 @@
 					if (dtm < 10) dtm = "0" + dtm;
 					return dt.getFullYear() + "-" + dtm + "-" + dt.getDate();
 				}
+			},
+			parseJsonData: function (id) {
+				var el = angular.element(doc.getElementById(id));
+				var text = el && el.text();
+				if (text) {
+					try{
+						return angular.fromJson(text);
+					} catch(ex) {return null;}
+				}
+				return null;
 			}
 		};
 

@@ -11,12 +11,12 @@
 			"$window",
 			"$http",
 			"queryStringService",
+			"utilService",
 			pageService]);
 
-	function pageService(loc, popup, loading, win, http, qs) {
+	function pageService(loc, popup, loading, win, http, qs, util) {
 
 		var page;
-		var doc = win.document;
 
 		page = {
 			// navigation utilities
@@ -65,13 +65,13 @@
 				}
 			},
 			data: {
-				profile: getCsData("profile")
+				profile: util.parseJsonData("profile")
 			},
 			api: {
 				publishWish: function (data) {
 					return http.get("/wish/add_wish", {
 						params: {
-							sid: page.profile.sid,
+							sid: page.data.profile.sid,
 							uid: page.data.profile.uid,
 							score: 0,
 							theme: 2, // 2为看电影
@@ -91,7 +91,7 @@
 				getWishList: function (cityId, info) {
 					return http.get("/wish/get_wish_list", {
 						params: {
-							sid: page.profile.sid,
+							sid: page.data.profile.sid,
 							city_id: cityId || 221,
 							attachinfo: info,
 							format: "json"
@@ -101,7 +101,7 @@
 				getWishDetail: function (wid) {
 					return http.get("/wish/get_wish_detail", {
 						params: {
-							sid: page.profile.sid,
+							sid: page.data.profile.sid,
 							wid: wid,
 							format: "json"
 						}
@@ -110,7 +110,7 @@
 				joinWish: function (wid) {
 					return http.get("/wish/join_wish", {
 						params: {
-							sid: page.profile.sid,
+							sid: page.data.profile.sid,
 							wid: wid,
 							type: 1, // 1 报名 2 取消报名
 							format: "json"
@@ -122,17 +122,6 @@
 
 		function convertTime(d,t) {
 			return Math.floor(new Date(d + "T" + t + ":00" + "Z").getTime() / 1000);
-		}
-
-		function getCsData(id) {
-			var el = angular.element(doc.getElementById(id));
-			var text = el && el.text();
-			if (text) {
-				try{
-					return angular.fromJson(text);
-				} catch(ex) {return null;}
-			}
-			return null;
 		}
 
 		return page;
