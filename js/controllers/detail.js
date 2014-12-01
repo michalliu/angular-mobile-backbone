@@ -66,7 +66,7 @@
 						// 渲染详情页
 						page.dialog.alert("报名成功");
 					} else {
-						page.dialog.alert("报名失败，" + response.message);
+						page.dialog.alert(response.message);
 					}
 				}).error(function publishError() {
 						page.dialog.alert("报名失败");

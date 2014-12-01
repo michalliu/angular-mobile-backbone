@@ -65,21 +65,23 @@
 				page.api.publishWish(scope.formData).
 					success(function publishSuccess(response) {
 						if (response && response.code === 0) {
-							page.dialog.alert("发表成功", "", onPublishSuccess);
+							page.dialog.loading.show("恭喜，发表成功了");
+							timeout(function () {
+								page.dialog.loading.hide();
+								onPublishSuccess();
+							},500);
 						} else {
-							page.dialog.alert("发表失败，" + response.message);
+							page.dialog.alert(response.message);
 						}
 					}).error(function publishError() {
 							page.dialog.alert("发表失败");
-					}).always(function () {
-						page.dialog.loading.hide();
 					});
 			},500);
 
 			function onPublishSuccess() {
 				timeout(function () {
 					navbar.back();
-				}, 500);
+				}, 300);
 			}
 
 		};
