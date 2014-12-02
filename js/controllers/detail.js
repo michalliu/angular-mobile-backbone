@@ -13,7 +13,7 @@
 
 	var lastWid;
 
-	function detail(scope, loc, timeout, page, util, navbar) {
+	function detail(scope, loc, timeout, page, util) {
 		var params = loc.search();
 		var wid = params.id || lastWid;
 		lastWid = wid;
@@ -25,6 +25,7 @@
 			scope.wish.message = wish.content;
 			scope.wish.joinList = wish.joinlist;
 			scope.wish.joinCount = wish.joinlist.length;
+			scope.wish.isJoined = wish.have_joined === 1;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";
 			} else if(wish.needgender === 1) {
@@ -41,7 +42,7 @@
 			}
 		}
 
-		scope.wishPromise=timeout(angular.noop,300).then(function () {
+		function getWishDetail(){
 			return page.api.getWishDetail(wid).
 			success(function (response) {
 				if (response &&
@@ -56,21 +57,39 @@
 			}).error(function publishError() {
 					page.dialog.alert("郁闷，拉取数据失败了");
 			});
+		}
+
+		scope.wishPromise=timeout(angular.noop,300).then(function () {
+			return getWishDetail();
 		});		// 报名
 
-		scope.joinWish = function () {
-			page.api.joinWish(wid).
+		// join为true表示应征，false 取消
+		scope.joinWish = function (isJoin) {
+			var extra = (isJoin ? "" : "取消") + "报名";
+
+			page.dialog.loading.show(extra + "执行中...");
+
+			page.api.joinWish(wid, isJoin).
 				success(function (response) {
 					if (response &&
 						response.code === 0) {
-						// 渲染详情页
-						page.dialog.alert("报名成功");
+
+						page.dialog.loading.show(extra + "成功");
+						timeout(function () {
+							page.dialog.loading.hide();
+						},500);
 					} else {
-						page.dialog.alert(response.message);
+						page.dialog.loading.hide();
+						timeout(function () {
+							page.dialog.alert(response.message);
+						},0);
 					}
 				}).error(function publishError() {
-						page.dialog.alert("报名失败");
-				});
+					page.dialog.loading.hide();
+					timeout(function () {
+						page.dialog.alert(extra + "失败");
+					},0);
+				}).always(getWishDetail);
 		};
 	}
 

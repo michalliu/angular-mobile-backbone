@@ -71,10 +71,16 @@
 								onPublishSuccess();
 							},500);
 						} else {
-							page.dialog.alert(response.message);
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert(response.message);
+							},0);
 						}
 					}).error(function publishError() {
-							page.dialog.alert("发表失败");
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert("发表失败");
+							},0);
 					});
 			},500);
 
