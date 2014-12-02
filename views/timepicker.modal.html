@@ -1,0 +1,26 @@
+<div class="modal">
+	<header class="bar bar-header bar-positive">
+		<h1 class="title">选择时间</h1>
+	</header>
+	<ion-content class="has-header">
+	<div class="padding">
+		<div class="list">
+			<label class="item item-input item-select">
+				<div class="input-label">
+					小时
+				</div>
+				<select ng-model="formData.hour" ng-options="hour as hour for hour in hourRange"></select>
+			</label>
+			<label class="item item-input item-select">
+				<div class="input-label">
+					分钟
+				</div>
+				<select ng-model="formData.minute" ng-options="minute as minute for minute in minuteRange"></select>
+			</label>
+		</div>
+	</div>
+	<div class="padding">
+	 <button class="button button-block button-balanced" ng-click="closeTimePickerModal(formData.hour,formData.minute)">确定</button>
+ 	</div>
+	</ion-content>
+</div>

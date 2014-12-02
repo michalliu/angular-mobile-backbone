@@ -86,6 +86,29 @@
 					close: function (scope) {
 						scope.modal.hide();
 					}
+				},
+				timepicker: {
+					open: function (scope) {
+						modal.fromTemplateUrl("views/timepicker.modal.html", {
+							scope: scope,
+							animation: 'slide-in-up'
+						}).then(function (modal) {
+							scope.modal = modal;
+						}).then(function () {
+							scope.modal.show();
+						});
+						// unregister event "$destroy" listeners
+						scope.$$listeners.$destroy = [];
+						scope.$on("$destroy", function  () {
+							if (scope.modal) {
+								scope.modal.remove();
+								scope.modal = null;
+							}
+						});
+					},
+					close: function (scope) {
+						scope.modal.hide();
+					}
 				}
 			},
 			data: {
@@ -145,7 +168,8 @@
 		};
 
 		function convertTime(d,t) {
-			return Math.floor(new Date(d + "T" + t + ":00" + "Z").getTime() / 1000);
+			var temp=new Date();
+			return Math.floor(new Date(d + "T" + t + ":00" + "Z").getTime() / 1000) + temp.getTimezoneOffset() * 60;
 		}
 
 		return page;

@@ -10,6 +10,19 @@
 			"$ionicNavBarDelegate",
 			publish]);
 
+	function createRange(min, max, step){
+		var ret=[];
+		step = step || 1;
+		for (var i=min;i<max;i+=step){
+			if (i<10) {
+				ret.push("0" + i);
+			} else {
+				ret.push(i);
+			}
+		}
+		return ret;
+	}
+
 	function publish(scope, timeout, page, movieData, navbar) {
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
@@ -21,10 +34,15 @@
 			{"name": "求请客", "value": 2},
 			{"name": "AA", "value": 3}
 		];
+		scope.hourRange = createRange(0,24);
+		scope.minuteRange = createRange(0,60);
 		scope.formData={
 			city: movieData.hotCityList[3], // 默认选择深圳
 			theater: null,
 			date: null,
+			hour: null,
+			minute: null,
+			time: null,
 			type: scope.typeList[0],
 			want: scope.wantList[1],
 			message: ""
@@ -44,19 +62,31 @@
 		scope.openDatePickerModal = function openDatepickerModal() {
 			page.dialog.datepicker.open(scope);
 		};
-		scope.closeDatePickerModal = function () {
+		scope.closeDatePickerModal = function (date) {
+			if (!date) {
+				page.dialog.alert("日期不能为空噢");
+				return;
+			}
 			page.dialog.datepicker.close(scope);
+			timeout(function () {
+				page.dialog.timepicker.open(scope);
+			},300);
+		};
+		scope.closeTimePickerModal = function(hour, minute){
+			if (!hour || !minute) {
+				page.dialog.alert("时间不能为空噢");
+				return;
+			}
+			page.dialog.timepicker.close(scope);
+			scope.formData.time = hour + ":" + minute;
+			scope.formData.displayDate= hour + ":" + minute + " " + scope.formData.date;
 		};
 		scope.publishEvent = function () {
 			var message = scope.formData.message;
-			//var dataDate = doc.getElementById("formDataDate").value;
-			//var dataTime = doc.getElementById("formDataTime").value;
-			//scope.formData.date = dataDate;
-			//scope.formData.time = dataTime;
-			//if (!dataDate || !dataTime) {
-			//	page.dialog.alert("还没有填写时间呢");
-			//	return;
-			//}
+			if (!scope.formData.date || !scope.formData.time) {
+				page.dialog.alert("还没有填写时间呢");
+				return;
+			}
 			if (message.length <= 0) {
 				page.dialog.alert("写点儿留言能提高成功率哟");
 				return;
