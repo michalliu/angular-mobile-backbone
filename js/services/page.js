@@ -69,7 +69,7 @@
 			},
 			api: {
 				publishWish: function (data) {
-					return http.get("/wish/add_wish", {
+					return http.post("/wish/add_wish", {
 						params: {
 							sid: page.data.profile.sid,
 							uid: page.data.profile.uid,
@@ -107,12 +107,12 @@
 						}
 					});
 				},
-				joinWish: function (wid) {
-					return http.get("/wish/join_wish", {
+				joinWish: function (wid,isJoin) {
+					return http.post("/wish/join_wish", {
 						params: {
 							sid: page.data.profile.sid,
 							wid: wid,
-							type: 1, // 1 报名 2 取消报名
+							type: isJoin ? 1 : 2, // 1 报名 2 取消报名
 							format: "json"
 						}
 					});

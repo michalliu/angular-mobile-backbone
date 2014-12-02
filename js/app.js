@@ -6,6 +6,22 @@
 			"appViewCache",
 			"pasvaz.bindonce"
 			])
+		.config(['$httpProvider', function (http) {
+			http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+			http.defaults.transformRequest.unshift(function (data) {
+				if(!data) return "";
+				var params = data.params, result=[];
+				if (params) {
+					for(var key in params) {
+						if(params.hasOwnProperty(key)) {
+							result.push(encodeURIComponent(key) + "=" + encodeURIComponent(params[key]));
+						}
+					}
+					return result.join("&");
+				}
+				return "";
+			});
+		}])
 		.run(["$ionicPlatform","$ionicLoading","$rootScope", "$window",
 			function (ionicPlatform, ionicLoading, rootScope) {
 				rootScope.$on('$stateChangeStart', function () {
