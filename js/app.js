@@ -4,7 +4,8 @@
 		.module("app", [
 			"ionic",
 			"appViewCache",
-			"pasvaz.bindonce"
+			"pasvaz.bindonce",
+			"pickadate"
 			])
 		.config(['$httpProvider', function (http) {
 			http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";

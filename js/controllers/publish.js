@@ -8,11 +8,9 @@
 			"pageService",
 			"movieDataService",
 			"$ionicNavBarDelegate",
-			"$window",
 			publish]);
 
-	function publish(scope, timeout, page, movieData, navbar, win) {
-		var doc = win.document;
+	function publish(scope, timeout, page, movieData, navbar) {
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
 			{"name": "限女生", "value": 2},
@@ -27,7 +25,6 @@
 			city: movieData.hotCityList[3], // 默认选择深圳
 			theater: null,
 			date: null,
-			time: null,
 			type: scope.typeList[0],
 			want: scope.wantList[1],
 			message: ""
@@ -44,16 +41,22 @@
 				page.dialog.alert("获取影院数据失败了");
 			});
 		});
+		scope.openDatePickerModal = function openDatepickerModal() {
+			page.dialog.datepicker.open(scope);
+		};
+		scope.closeDatePickerModal = function () {
+			page.dialog.datepicker.close(scope);
+		};
 		scope.publishEvent = function () {
 			var message = scope.formData.message;
-			var dataDate = doc.getElementById("formDataDate").value;
-			var dataTime = doc.getElementById("formDataTime").value;
-			scope.formData.date = dataDate;
-			scope.formData.time = dataTime;
-			if (!dataDate || !dataTime) {
-				page.dialog.alert("还没有填写时间呢");
-				return;
-			}
+			//var dataDate = doc.getElementById("formDataDate").value;
+			//var dataTime = doc.getElementById("formDataTime").value;
+			//scope.formData.date = dataDate;
+			//scope.formData.time = dataTime;
+			//if (!dataDate || !dataTime) {
+			//	page.dialog.alert("还没有填写时间呢");
+			//	return;
+			//}
 			if (message.length <= 0) {
 				page.dialog.alert("写点儿留言能提高成功率哟");
 				return;

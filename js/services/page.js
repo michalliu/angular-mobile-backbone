@@ -8,13 +8,14 @@
 			"$location",
 			"$ionicPopup",
 			"$ionicLoading",
+			"$ionicModal",
 			"$window",
 			"$http",
 			"queryStringService",
 			"utilService",
 			pageService]);
 
-	function pageService(loc, popup, loading, win, http, qs, util) {
+	function pageService(loc, popup, loading, modal, win, http, qs, util) {
 
 		var page;
 
@@ -61,6 +62,29 @@
 					},
 					hide: function () {
 						loading.hide();
+					}
+				},
+				datepicker: {
+					open: function (scope) {
+						modal.fromTemplateUrl("views/datepicker.modal.html", {
+							scope: scope,
+							animation: 'slide-in-up'
+						}).then(function (modal) {
+							scope.modal = modal;
+						}).then(function () {
+							scope.modal.show();
+						});
+						// unregister event "$destroy" listeners
+						scope.$$listeners.$destroy = [];
+						scope.$on("$destroy", function  () {
+							if (scope.modal) {
+								scope.modal.remove();
+								scope.modal = null;
+							}
+						});
+					},
+					close: function (scope) {
+						scope.modal.hide();
 					}
 				}
 			},
