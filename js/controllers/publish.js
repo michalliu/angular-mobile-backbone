@@ -23,6 +23,15 @@
 		return ret;
 	}
 
+	function findCityById(cityList, cityId) {
+		for (var i=0,l=cityList.length;i<l;i++) {
+			if (cityId === cityList[i].id) {
+				return cityList[i];
+			}
+		}
+		return null;
+	}
+
 	function publish(scope, timeout, page, movieData, navbar) {
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
@@ -42,8 +51,9 @@
 		var timeLimit = page.data.profile.add_wish_time_limit;
 		baseDate.setTime(baseTime);
 		maxDate.setTime(baseTime + timeLimit * 24 * 3600 * 1000);
+		var userCityId = page.data.profile.city_id;
 		scope.formData={
-			city: movieData.hotCityList[3], // 默认选择深圳
+			city: findCityById(movieData.hotCityList,userCityId),
 			theater: null,
 			date: null,
 			baseDate: baseDate,
