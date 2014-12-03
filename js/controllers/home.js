@@ -2,7 +2,7 @@
 ;(function () {
 	angular
 		.module("app")
-		.controller("HomeControl", ["$scope", "$ionicModal", "pageService", home])
+		.controller("HomeControl", ["$scope", "$ionicModal", "pageService", "movieDataService","$timeout","utilService", home])
 		.controller("HomeTab1Control", ["$scope", "$ionicModal", "$ionicLoading", "pageService",
 			"utilService","$timeout", homeTab1]);
 
@@ -14,12 +14,83 @@
 		return a1;
 	}
 
-	function home(scope, modal, page) {
+	function openProfileModal(modal, scope) {
+		modal.fromTemplateUrl("views/profile.modal.html", {
+			scope: scope,
+			animation: 'slide-in-up'
+		}).then(function (modal) {
+			scope.modal = modal;
+		}).then(function () {
+			scope.modal.show();
+		});
+		// unregister event "$destroy" listeners
+		scope.$$listeners.$destroy = [];
+		scope.$on("$destroy", function  () {
+			if (scope.modal) {
+				scope.modal.remove();
+				scope.modal = null;
+			}
+		});
+	}
+
+	function home(scope, modal, page, movieData, timeout, util) {
 		scope.goPublish = function goPublish() {
 			page.navigation.redirect("/publish");
 		};
 		$(".tab-item").removeClass("x-tab-activated");
 		$("#homeTab1").addClass("x-tab-activated");
+
+		var profile = page.data.profile;
+		var phone_number = profile.phone_number;
+		var city_id = profile.city_id;
+		// 完善资料
+		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number)) {
+			openProfileModal(modal, scope);
+		}
+		scope.profileData = {
+			city: movieData.hotCityList[0],
+			phoneNumber: null
+		};
+		scope.cityList = movieData.hotCityList;
+		scope.fillProfile = function () {
+			timeout(function () {
+				if (!util.isPhoneNumberValid(scope.profileData.phoneNumber)){
+					page.dialog.alert("手机号码输入不正确噢");
+					return;
+				}
+				page.dialog.loading.show("资料提交中...");
+				page.api.setProfile({
+					phone_number: scope.profileData.phoneNumber,
+					city_id: scope.profileData.city.id
+				}).
+					success(function updateSuccess(response) {
+						if (response && response.code === 0) {
+							page.dialog.loading.show("设置成功了");
+							timeout(function () {
+								page.dialog.loading.hide();
+								onPublishSuccess();
+							},500);
+						} else {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert(response.message);
+							},0);
+						}
+					}).error(function publishError() {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert("提交失败");
+							},0);
+					});
+			},500);
+		};
+
+		function onPublishSuccess() {
+			scope.modal.hide();
+			profile.phone_number=scope.profileData.phoneNumber;
+			profile.city_id=scope.profileData.city.id;
+			page.navigation.reloadState();
+		}
 	}
 
 	function processWish(data, util) {
@@ -45,7 +116,7 @@
 		}
 		return ret;
 	}
-	
+
 	function processWishList(list, util) {
 		var newList = []; // 简单的list，去除不必要的信息
 		for (var i=0,l=list.length,one;i<l;i++) {
@@ -56,13 +127,20 @@
 	}
 
 	function homeTab1(scope, modal, loading, page, util, timeout) {
+		var profile = page.data.profile;
+		var phone_number = profile.phone_number;
+		var city_id = profile.city_id;
+		// 资料不完善不拉数据
+		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number)) {
+			return;
+		}
 		var attachInfo=""; // 翻页信息位
 		scope.items = [];
 		scope.moredata = false;
 		scope.loadMoreData = function () {
 			// 初始化时执行的东西不要太多，可以有效避免卡顿
 			timeout(angular.noop,500).then(function () {
-				page.api.getWishList(221,attachInfo).success(function (res) {
+				page.api.getWishList(city_id,attachInfo).success(function (res) {
 					var wishList;
 					if (res && res.code === 0 && res.data) {
 						attachInfo = res.data.attachinfo;

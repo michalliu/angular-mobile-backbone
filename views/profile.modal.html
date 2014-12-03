@@ -1,0 +1,27 @@
+<div class="modal">
+	<header class="bar bar-header bar-positive">
+		<h1 class="title">完善资料</h1>
+	</header>
+	<ion-content class="has-header">
+	<div class="padding">
+		<div class="list">
+			<label class="item item-input">
+				<div class="input-label">
+					手机号码
+				</div>
+				<input type="number" class="x-input-phone" ng-model="profileData.phoneNumber" placeholder="他人应征后才能看到此号码"></input>
+			</label>
+			<label class="item item-input item-select">
+				<div class="input-label">
+					所在城市
+				</div>
+				<select ng-model="profileData.city" ng-options="city.name for city in cityList">
+				</select>
+			</label>
+		</div>
+	</div>
+	<div class="padding">
+	 <button class="button button-block button-balanced" ng-click="fillProfile()">确定</button>
+ 	</div>
+	</ion-content>
+</div>

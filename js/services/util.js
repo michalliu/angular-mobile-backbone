@@ -111,6 +111,9 @@
 					} catch(ex) {return null;}
 				}
 				return null;
+			},
+			isPhoneNumberValid: function (str) {
+				return /^\s*\d{11,11}\s*$/.test(str);
 			}
 		};
 

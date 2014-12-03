@@ -52,6 +52,10 @@ ion-nav-view {background-color: white !important;}
 input[readonly].x-input{
 	background:#fff !important;
 }
+.x-input-phone{
+	direction: rtl !important;
+	padding-right:16px !important;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;

@@ -13,9 +13,10 @@
 			"$http",
 			"queryStringService",
 			"utilService",
+			"$state",
 			pageService]);
 
-	function pageService(loc, popup, loading, modal, win, http, qs, util) {
+	function pageService(loc, popup, loading, modal, win, http, qs, util, state) {
 
 		var page;
 
@@ -31,6 +32,9 @@
 				},
 				toHome: function () {
 					loc.path("/home");
+				},
+				reloadState: function () {
+					state.go(state.current, {}, {reload: true});
 				}
 			},
 			dialog: {
@@ -134,12 +138,11 @@
 						}
 					});
 				},
-				//TODO: 选择城市
 				getWishList: function (cityId, info) {
 					return http.get("/wish/get_wish_list", {
 						params: {
 							sid: page.data.profile.sid,
-							city_id: cityId || 221,
+							city_id: page.data.profile.city_id,
 							attachinfo: info,
 							format: "json"
 						}
@@ -171,6 +174,14 @@
 							attachinfo: info,
 							format: "json"
 						}
+					});
+				},
+				setProfile: function (map) {
+					return http.post("/wish/set_profile", {
+						params: angular.extend({
+							sid: page.data.profile.sid,
+							format: "json"
+						}, map)
 					});
 				}
 			}
