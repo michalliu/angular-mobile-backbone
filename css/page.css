@@ -49,6 +49,9 @@ ion-nav-view {background-color: white !important;}
 .x-tab-activated{
 	opacity: 1 !important;
 }
+input[readonly].x-input{
+	background:#fff !important;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;
