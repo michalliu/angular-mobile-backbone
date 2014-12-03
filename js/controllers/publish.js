@@ -35,7 +35,7 @@
 			{"name": "AA", "value": 3}
 		];
 		scope.hourRange = createRange(0,24);
-		scope.minuteRange = createRange(0,60);
+		scope.minuteRange = createRange(0,60,15);
 		var baseTime = page.data.profile.current_time * 1000;
 		var baseDate = new Date();
 		var maxDate = new Date();
@@ -49,8 +49,8 @@
 			baseDate: baseDate,
 			maxDate: maxDate,
 			minDate: baseDate,
-			hour: null,
-			minute: null,
+			hour: "00",
+			minute: "00",
 			time: null,
 			type: scope.typeList[0],
 			want: scope.wantList[1],
