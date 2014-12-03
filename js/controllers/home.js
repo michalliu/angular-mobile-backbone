@@ -99,7 +99,7 @@
 		ret.location = data.location;
 		ret.location_addr = data.location_addr;
 		ret.id = data.wid;
-		ret.timedesc = util.dateTime.getTimeDesc(data.endtime);
+		ret.timedesc = data.nickname + " " + util.dateTime.getTimeDesc(data.endtime);
 		if (data.needgender === 2) {
 			ret.wantGender = "仅限女生报名";
 		} else if(data.needgender === 1) {
