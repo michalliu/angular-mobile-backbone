@@ -81,7 +81,7 @@
 			timeout(function () {
 				scope.formData.time = null;
 				page.dialog.timepicker.open(scope);
-			},300);
+			},200);
 		};
 		scope.closeTimePickerModal = function(hour, minute){
 			if (!hour || !minute) {
