@@ -163,6 +163,15 @@
 							format: "json"
 						}
 					});
+				},
+				getMessageList: function(info) {
+					return http.get("/wish/passive_msg_list", {
+						params: {
+							sid: page.data.profile.sid,
+							attachinfo: info,
+							format: "json"
+						}
+					});
 				}
 			}
 		};
