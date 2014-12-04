@@ -77,6 +77,12 @@ input[readonly].x-input{
 .x-init-hide{
 	display:none;
 }
+.item-avatar > i:first-child{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 100%;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;
@@ -111,3 +117,8 @@ input[readonly].x-input{
 	padding-left:10px;
 	padding-right:10px;
 }
+.feed-icon-volume{
+	font-size:84px;
+	margin-left:11px;
+}
+
