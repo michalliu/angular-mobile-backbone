@@ -14,9 +14,10 @@
 			"queryStringService",
 			"utilService",
 			"$state",
+			"$timeout",
 			pageService]);
 
-	function pageService(loc, popup, loading, modal, win, http, qs, util, state) {
+	function pageService(loc, popup, loading, modal, win, http, qs, util, state, timeout) {
 
 		var page;
 
@@ -67,6 +68,14 @@
 					hide: function () {
 						loading.hide();
 					}
+				},
+				toast: function (message, t) {
+					message = message || "";
+					t = t || 1000;
+					page.dialog.loading.show(message);
+					timeout(function () {
+						page.dialog.loading.hide();
+					},t);
 				},
 				datepicker: {
 					open: function (scope) {
