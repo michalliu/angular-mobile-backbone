@@ -60,12 +60,17 @@
 			<div class="item item-text-wrap" bo-bind="wish.message">
 			</div>
 		</div>
-		<div class="padding" ng-if="!wish.isJoined">
+		<div class="card x-xcard" bo-if="wish.isSelf">
+			<div class="item item-text-wrap">
+				这是你自己的帖子
+			</div>
+		</div>
+		<div class="padding x-init-hide" ng-if="!wish.isSelf && !wish.isJoined">
 			<button class="button button-block button-assertive x-button-hasfooter" ng-click="joinWish(true)">
 			应征
 			</button>
 		</div>
-		<div class="padding" ng-if="wish.isJoined">
+		<div class="padding x-init-hide" ng-if="!wish.isSelf && wish.isJoined ng-cloak">
 			<button class="button button-block button-energized x-button-hasfooter" ng-click="joinWish(false)">
 			取消应征
 			</button>

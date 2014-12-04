@@ -1,18 +1,36 @@
 <ion-view title="消息列表">
 	<ion-content>
-  		<div class="card" ng-repeat="item in items">
-  		    <div class="item item-avatar x-item-big-avatar x-no-padding-bottom" bindonce>
-  		    <img bo-src="item.logo">
-  		    <h2 bo-bind="item.timedesc"></h2>
-  		    <p><span bo-bind="item.location"></span><span class="x-small-font" bo-bind="item.location_addr"></span></p>
-  		    <p bo-bind="item.wantGender"></p>
-  		    <p bo-bind="item.typeDesc"></p>
-  		    <button class="button button-block button-small button-assertive" ng-click="goWishDetail(item)">应征</button>
-  		    </div>
-  		</div>
+		<div bindonce ng-repeat="item in items">
+			<div bo-switch="item.type">
+				<div bo-switch-when="1">
+					<div class="card">
+						<div class="item item-text-wrap ion ion-volume-medium ion-volume-medium-large">
+							<span class="x-feed-notification" bo-bind="item.timedesc"></span>
+							<span class="x-feed-notification" bo-bind="item.nickname"></span>
+							<span class="x-feed-notification" bo-bind="item.message"></span>
+							<button class="button button-stable button-small feed-detail-button feed-action-button" ng-click="showDetail(item)">查看详情</button>
+						</div>
+					</div>
+				</div>
+				<div bo-switch-when="2">
+					<div class="card">
+						<div class="item item-avatar x-item-medium-avatar x-no-padding-bottom">
+							<img bo-src="item.logo" width="84" height="84" style="width:84px;">
+							<h2 bo-bind="item.timedesc"></h2>
+							<p><span bo-bind="item.nickname"></span><span bo-bind="item.message"></span></p>
+							<div>
+								<button class="button button-balanced button-small feed-action-button">同意</button>
+								<button class="button button-assertive button-small feed-action-button">拒绝</button>
+								<button class="button button-stable button-small x-pull-right feed-action-button" ng-click="showDetail(item)">查看详情</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<ion-infinite-scroll distance="1%"
-		        on-infinite="loadMoreData()"
-		        ng-if="!moredata">
+				on-infinite="loadMoreData()"
+				ng-if="!moredata">
 		</ion-infinite-scroll>
 	</ion-content>
 </ion-view>

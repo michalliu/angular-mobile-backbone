@@ -31,6 +31,14 @@ ion-nav-view {background-color: white !important;}
 	max-width:100px;
 	max-height:100px;
 }
+.x-item-medium-avatar{
+	padding-left: 116px;
+	min-height: 116px;
+}
+.x-item-medium-avatar > img:first-child{
+	max-width:84px;
+	max-height:84px;
+}
 .x-small-font{
 	font-size:12px;
 }
@@ -55,6 +63,19 @@ input[readonly].x-input{
 .x-input-phone{
 	direction: rtl !important;
 	padding-right:16px !important;
+}
+.ion-volume-medium.ion-volume-medium-large:before{
+	font-size:30px;
+}
+.x-feed-notification{
+	position:relative;
+	top:-7px; /* 垂直居中 */
+}
+.x-pull-right{
+	float:right;
+}
+.x-init-hide{
+	display:none;
 }
 /* private style */
 .publish-event{
@@ -81,4 +102,12 @@ input[readonly].x-input{
 .detail-joinlist img{
 	max-width:40px;
 	max-height:40px;
+}
+.feed-detail-button{
+	float:right;
+	display:block;
+}
+.feed-action-button{
+	padding-left:10px;
+	padding-right:10px;
 }

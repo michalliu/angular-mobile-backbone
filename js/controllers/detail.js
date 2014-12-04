@@ -1,4 +1,4 @@
-/*globals angular*/
+/*globals angular,$*/
 ;(function () {
 	angular
 		.module("app")
@@ -22,10 +22,11 @@
 		function handleWishData(wish) {
 			scope.wish.time = util.dateTime.getTimeDesc(wish.endtime);
 			scope.wish.location_addr = wish.location;
-			scope.wish.message = wish.content;
+			scope.wish.message = "主人【" + wish.nickname + "】留言: " + wish.content;
 			scope.wish.joinList = wish.joinlist;
 			scope.wish.joinCount = wish.joinlist.length;
 			scope.wish.isJoined = wish.have_joined === 1;
+			scope.wish.isSelf = wish.uid === page.data.profile.uid;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";
 			} else if(wish.needgender === 1) {
@@ -51,6 +52,8 @@
 					response.data.wish) {
 					// 渲染详情页
 					handleWishData(response.data.wish);
+					// ng-if有延迟，刷新一瞬间会先显示，再隐藏，元素会闪现一下
+					$(".x-init-hide").removeClass("x-init-hide");
 				} else {
 					page.dialog.alert("郁闷，拉取数据失败了，" + response.message);
 				}
