@@ -27,6 +27,7 @@
 			scope.wish.joinCount = wish.joinlist.length;
 			scope.wish.isJoined = wish.have_joined === 1;
 			scope.wish.isSelf = wish.uid === page.data.profile.uid;
+			scope.wish.logo = wish.logo;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";
 			} else if(wish.needgender === 1) {
