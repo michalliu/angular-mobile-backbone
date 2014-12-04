@@ -148,7 +148,7 @@
 						if (wishList && wishList.length > 0) {
 							scope.items=concat(scope.items, processWishList(wishList, util));
 						} else {
-							page.dialog.toast("没有更多数据了");
+							//page.dialog.toast("没有更多数据了");
 						}
 						if (scope.items.length > 100 || res.data.hasmore === 0) { // 最多100条最新数据
 							scope.moredata = true; // 不再加载更多
