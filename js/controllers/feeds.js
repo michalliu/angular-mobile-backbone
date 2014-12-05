@@ -73,7 +73,7 @@
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
 				}).always(function () {
-					$(".no-feeds .x-init-hide").removeClass("x-init-hide");
+					$(".no-feeds").removeClass("x-init-hide");
 				});
 			});
 		};

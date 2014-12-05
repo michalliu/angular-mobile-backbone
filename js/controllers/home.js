@@ -165,7 +165,7 @@
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
 				}).always(function () {
-					$(".no-wish .x-init-hide").removeClass("x-init-hide");
+					$(".no-wish").removeClass("x-init-hide");
 				});
 			});
 		};
