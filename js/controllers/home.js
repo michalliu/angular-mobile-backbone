@@ -43,6 +43,10 @@
 		var profile = page.data.profile;
 		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
+
+		// 说明未登录
+		if (!profile.sid) return;
+
 		// 完善资料
 		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number)) {
 			openProfileModal(modal, scope);
