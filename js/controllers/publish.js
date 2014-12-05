@@ -8,6 +8,7 @@
 			"pageService",
 			"movieDataService",
 			"$ionicNavBarDelegate",
+			"utilService",
 			publish]);
 
 	function createRange(min, max, step){
@@ -23,16 +24,7 @@
 		return ret;
 	}
 
-	function findCityById(cityList, cityId) {
-		for (var i=0,l=cityList.length;i<l;i++) {
-			if (cityId === cityList[i].id) {
-				return cityList[i];
-			}
-		}
-		return null;
-	}
-
-	function publish(scope, timeout, page, movieData, navbar) {
+	function publish(scope, timeout, page, movieData, navbar, util) {
 		scope.wantList = [
 			{"name": "限男生", "value": 1},
 			{"name": "限女生", "value": 2},
@@ -53,7 +45,7 @@
 		maxDate.setTime(baseTime + timeLimit * 24 * 3600 * 1000);
 		var userCityId = page.data.profile.city_id;
 		scope.formData={
-			city: findCityById(movieData.hotCityList,userCityId),
+			city: util.findCityById(movieData.hotCityList,userCityId),
 			theater: null,
 			date: null,
 			baseDate: baseDate,

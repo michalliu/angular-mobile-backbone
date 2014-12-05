@@ -1,22 +1,19 @@
 <div class="modal">
 	<header class="bar bar-header bar-positive">
-		<h1 class="title">完善资料</h1>
+		<h1 class="title">设置资料</h1>
 	</header>
 	<ion-content class="has-header">
 	<div class="padding">
 		<div class="list">
-			<label class="item item-input">
-				<div class="input-label">
-					手机号码
-				</div>
-				<input type="number" class="x-input-phone" ng-model="profileData.phoneNumber" placeholder="他人应征后才能看到此号码"></input>
+			<label class="item item-input item-stacked-label">
+				<span class="input-label">手机号码</span>
+				<input type="text" ng-model="profileData.phoneNumber" placeholder="请填写真实手机号，约会成功后对方才能看到">
 			</label>
 			<label class="item item-input item-select">
 				<div class="input-label">
 					所在城市
 				</div>
-				<select ng-model="profileData.city" ng-options="city.name for city in cityList">
-				</select>
+				<select ng-model="profileData.city" ng-options="city.name for city in cityList"></select>
 			</label>
 		</div>
 	</div>

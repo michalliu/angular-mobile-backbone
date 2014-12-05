@@ -114,6 +114,14 @@
 			},
 			isPhoneNumberValid: function (str) {
 				return /^\s*\d{11,11}\s*$/.test(str);
+			},
+			findCityById: function (cityList, cityId) {
+				for (var i=0,l=cityList.length;i<l;i++) {
+					if (cityId === cityList[i].id) {
+						return cityList[i];
+					}
+				}
+				return null;
 			}
 		};
 

@@ -25,12 +25,6 @@
 		});
 		// unregister event "$destroy" listeners
 		scope.$$listeners.$destroy = [];
-		scope.$on("$destroy", function  () {
-			if (scope.modal) {
-				scope.modal.remove();
-				scope.modal = null;
-			}
-		});
 	}
 
 	function home(scope, modal, page, movieData, timeout, util) {
@@ -52,8 +46,11 @@
 			openProfileModal(modal, scope);
 		}
 		scope.profileData = {
-			city: movieData.hotCityList[0],
-			phoneNumber: null
+			city: util.findCityById(movieData.hotCityList,city_id) || movieData.hotCityList[0],
+			phoneNumber: profile.phone_number || ""
+		};
+		scope.openSettingModal = function () {
+			openProfileModal(modal, scope);
 		};
 		scope.cityList = movieData.hotCityList;
 		scope.fillProfile = function () {
@@ -93,7 +90,10 @@
 			scope.modal.hide();
 			profile.phone_number=scope.profileData.phoneNumber;
 			profile.city_id=scope.profileData.city.id;
-			page.navigation.reloadState();
+			timeout(function () {
+				$(".setting-button").first().remove(); // 实在搞不懂为什么这里会出现两个设置按钮，只好强制移除一个，估计是ionic的bug
+				page.navigation.reloadState();
+			},200);
 		}
 	}
 
