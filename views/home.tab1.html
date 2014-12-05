@@ -1,6 +1,6 @@
-<div class="card" ng-if="items.length <= 0">
+<div class="card x-init-hide" ng-if="items.length <= 0" bindonce>
   <div class="item item-text-wrap x-center-text">
-	  还没有人在你所在的城市发表过噢
+	  暂时还没有人在你所在的城市【<span bo-bind="city.name"></span>】发起约会噢
   </div>
 </div>
 <div class="card" ng-repeat="item in items" ng-if="items.length > 0">

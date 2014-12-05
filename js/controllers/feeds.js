@@ -72,6 +72,8 @@
 					}
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
+				}).always(function () {
+					$(".x-init-hide").removeClass("x-init-hide");
 				});
 			});
 		};

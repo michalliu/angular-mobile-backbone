@@ -4,7 +4,7 @@
 		.module("app")
 		.controller("HomeControl", ["$scope", "$ionicModal", "pageService", "movieDataService","$timeout","utilService", home])
 		.controller("HomeTab1Control", ["$scope", "$ionicModal", "$ionicLoading", "pageService",
-			"utilService","$timeout", homeTab1]);
+			"utilService","$timeout", "movieDataService", homeTab1]);
 
 	function concat(a1, a2) {
 		for (var i=0,l=a2.length,one;i<l;i++) {
@@ -130,7 +130,7 @@
 		return newList;
 	}
 
-	function homeTab1(scope, modal, loading, page, util, timeout) {
+	function homeTab1(scope, modal, loading, page, util, timeout, movieData) {
 		var profile = page.data.profile;
 		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
@@ -141,6 +141,7 @@
 		var attachInfo=""; // 翻页信息位
 		scope.items = [];
 		scope.moredata = false;
+		scope.city = util.findCityById(movieData.hotCityList,city_id);
 		scope.loadMoreData = function () {
 			// 初始化时执行的东西不要太多，可以有效避免卡顿
 			timeout(angular.noop,500).then(function () {
@@ -163,6 +164,8 @@
 					}
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
+				}).always(function () {
+					$(".x-init-hide").removeClass("x-init-hide");
 				});
 			});
 		};
