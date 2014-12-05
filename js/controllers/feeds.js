@@ -14,6 +14,7 @@
 	function processWish(data, util) {
 		var ret = {};
 		ret.id = data.wid;
+		ret.opuid = data.opuid;
 		ret.logo = data.op_logo;
 		ret.nickname = data.op_nickname;
 		ret.timedesc = util.dateTime.getTimeDesc(data.createtime);
@@ -76,6 +77,66 @@
 
 		scope.showDetail = function (item) {
 			page.navigation.redirect("/detail", {id: item.id});
+		};
+
+		scope.refuse = function (item) {
+			page.dialog.loading.show("执行中...");
+
+			timeout(function () {
+				page.api.refuseInvite({
+					other_uid: item.opuid,
+					wid: item.id
+				}).
+					success(function publishSuccess(response) {
+						if (response && response.code === 0) {
+							page.dialog.loading.show("已同意对方的报名");
+							timeout(function () {
+								page.dialog.loading.hide();
+								page.navigation.reloadState();
+							},500);
+						} else {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert(response.message);
+							},0);
+						}
+					}).error(function publishError() {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert("操作失败");
+							},0);
+					});
+			},500);
+		};
+
+		scope.accept = function (item) {
+			page.dialog.loading.show("执行中...");
+
+			timeout(function () {
+				page.api.refuseInvite({
+					other_uid: item.opuid,
+					wid: item.id
+				}).
+					success(function publishSuccess(response) {
+						if (response && response.code === 0) {
+							page.dialog.loading.show("已拒绝对方的报名");
+							timeout(function () {
+								page.dialog.loading.hide();
+								page.navigation.reloadState();
+							},500);
+						} else {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert(response.message);
+							},0);
+						}
+					}).error(function publishError() {
+							page.dialog.loading.hide();
+							timeout(function () {
+								page.dialog.alert("操作失败");
+							},0);
+					});
+			},500);
 		};
 	}
 

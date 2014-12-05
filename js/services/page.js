@@ -192,6 +192,22 @@
 							format: "json"
 						}, map)
 					});
+				},
+				acceptInvite: function(map) {
+					return http.post("/wish/accept", {
+						params: angular.extend({
+							sid: page.data.profile.sid,
+							format: "json"
+						}, map)
+					});
+				},
+				refuseInvite: function (map) {
+					return http.post("/wish/refuse", {
+						params: angular.extend({
+							sid: page.data.profile.sid,
+							format: "json"
+						}, map)
+					});
 				}
 			}
 		};

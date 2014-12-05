@@ -51,6 +51,9 @@ ion-nav-view {background-color: white !important;}
 .x-button-hasfooter{
 	margin-bottom:44px !important;
 }
+.x-hasfooter{
+	margin-bottom:59px !important;
+}
 .x-card{
 	margin:10px 10px !important;
 }
@@ -120,5 +123,8 @@ input[readonly].x-input{
 .feed-icon-volume{
 	font-size:84px;
 	margin-left:11px;
+}
+.message-item:last-child{
+	margin-bottom:89px !important;
 }
 
