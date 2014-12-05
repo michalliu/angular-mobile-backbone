@@ -59,6 +59,7 @@
 						wishList = res.data.wishlist;
 						if (wishList) {
 							scope.items=concat(scope.items, processWishList(wishList, util));
+							$("#tab2badge").addClass("x-init-hide"); // 隐藏消息角标
 						} else {
 							//page.dialog.toast("没有更多数据了");
 						}
