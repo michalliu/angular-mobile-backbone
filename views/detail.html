@@ -55,15 +55,28 @@
 				这是你自己的帖子
 			</div>
 		</div>
-		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && !wish.isJoined">
+		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 0">
 			<button class="button button-block button-assertive x-button-hasfooter" ng-click="joinWish(true)">
 			报名
 			</button>
 		</div>
-		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.isJoined">
+		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 1">
 			<button class="button button-block button-energized x-button-hasfooter" ng-click="joinWish(false)">
 			取消报名
 			</button>
+		</div>
+		<div class="card x-xcard x-hasfooter" bo-if="!wish.isSelf && wish.joinState === 2">
+			<div class="item item-text-wrap">
+				<span bo-bind="wish.messageTitle"></span>拒绝了你的报名
+			</div>
+		</div>
+		<div class="card x-xcard x-hasfooter" bo-if="!wish.isSelf && wish.joinState === 3">
+			<div class="item item-text-wrap">
+				<span bo-bind="wish.messageTitle"></span>同意了你的报名
+			</div>
+			<div class="item item-text-wrap">
+				悄悄告诉你，主人的手机号是 <span bo-bind="wish.phomeNumber"></span>
+			</div>
 		</div>
 	</ion-content>
 </ion-view>

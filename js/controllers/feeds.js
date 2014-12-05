@@ -79,7 +79,7 @@
 			page.navigation.redirect("/detail", {id: item.id});
 		};
 
-		scope.refuse = function (item) {
+		scope.accept = function (item) {
 			page.dialog.loading.show("执行中...");
 
 			timeout(function () {
@@ -109,7 +109,7 @@
 			},500);
 		};
 
-		scope.accept = function (item) {
+		scope.refuse = function (item) {
 			page.dialog.loading.show("执行中...");
 
 			timeout(function () {

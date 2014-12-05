@@ -1,8 +1,8 @@
 <ion-view title="消息列表">
 	<ion-content>
-		<div bindonce ng-repeat="item in items">
+		<div bindonce ng-repeat="item in items" class="message-item">
 			<div bo-switch="item.type">
-				<div bo-switch-when="1" class="message-item">
+				<div bo-switch-when="1">
 					<div class="card">
 						<div class="item item-avatar x-item-medium-avatar">
 							<i class="ion ion-volume-medium feed-icon-volume" bo-src="item.logo" width="84" height="84"></i>
@@ -14,7 +14,7 @@
 						</div>
 					</div>
 				</div>
-				<div bo-switch-when="2" class="message-item">
+				<div bo-switch-when="2">
 					<div class="card">
 						<div class="item item-avatar x-item-medium-avatar">
 							<img bo-src="item.logo" width="84" height="84">
