@@ -83,7 +83,7 @@
 			page.dialog.loading.show("执行中...");
 
 			timeout(function () {
-				page.api.refuseInvite({
+				page.api.acceptInvite({
 					other_uid: item.opuid,
 					wid: item.id
 				}).
