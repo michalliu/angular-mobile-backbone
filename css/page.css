@@ -80,6 +80,9 @@ input[readonly].x-input{
 .x-init-hide{
 	display:none;
 }
+.x-tab-item .badge {
+	top:0 !important;
+}
 .item-avatar > i:first-child{
     position: absolute;
     top: 16px;
