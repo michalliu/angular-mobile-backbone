@@ -66,7 +66,17 @@
 			want: scope.wantList[1],
 			message: ""
 		};
-		scope.cityList = movieData.hotCityList;
+
+		movieData.getTheaterListByCityId(scope.formData.city.id).
+		then(function (data) {
+			scope.formData.theater = data.info[0];
+			scope.theaterList = data.info;
+		}, function () {
+			scope.theaterList = [];
+			scope.formData.theater = null;
+			page.dialog.alert("获取影院数据失败了");
+		});
+		/*scope.cityList = movieData.hotCityList;
 		scope.$watch("formData.city", function cityChanged() {
 			movieData.getTheaterListByCityId(scope.formData.city.id).
 			then(function (data) {
@@ -77,7 +87,7 @@
 				scope.formData.theater = null;
 				page.dialog.alert("获取影院数据失败了");
 			});
-		});
+		});*/
 		scope.openDatePickerModal = function openDatepickerModal() {
 			scope.formData.date = null;
 			page.dialog.datepicker.open(scope);
