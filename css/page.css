@@ -89,6 +89,9 @@ input[readonly].x-input{
     left: 16px;
     width: 100%;
 }
+.x-center-text{
+	text-align:center;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;
