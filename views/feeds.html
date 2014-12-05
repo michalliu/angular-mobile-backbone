@@ -6,8 +6,8 @@
 					<div class="card">
 						<div class="item item-avatar x-item-medium-avatar">
 							<i class="ion ion-volume-medium feed-icon-volume" bo-src="item.logo" width="84" height="84"></i>
-							<p><span bo-bind="item.message"></span><span bo-bind="item.summary"></span></p>
-							<p><span bo-bind="item.timedesc"></span></p>
+							<p><span bo-bind="item.timedesc"></span> <span bo-bind="item.message"></span></p>
+							<p><span bo-bind="item.summary"></span></p>
 							<div>
 								<button class="button button-stable button-small feed-action-button" ng-click="showDetail(item)">详情</button>
 							</div>
@@ -18,8 +18,8 @@
 					<div class="card">
 						<div class="item item-avatar x-item-medium-avatar">
 							<img bo-src="item.logo" width="84" height="84">
-							<p><span bo-bind="item.nickname"></span><span bo-bind="item.message"></span><span bo-bind="item.summary"></span></p>
-							<p><span bo-bind="item.timedesc"></span></p>
+							<p><span bo-bind="item.timedesc"></span> <span bo-bind="item.nickname"></span><span bo-bind="item.message"></span></p>
+							<p><span bo-bind="item.summary"></span></p>
 							<div>
 								<button class="button button-balanced button-small feed-action-button" ng-click="accept(item)">同意</button>
 								<button class="button button-assertive button-small feed-action-button" ng-click="refuse(item)">拒绝</button>

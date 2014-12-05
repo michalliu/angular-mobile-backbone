@@ -16,7 +16,7 @@
 		ret.id = data.wid;
 		ret.opuid = data.opuid;
 		ret.logo = data.op_logo;
-		ret.nickname = data.op_nickname;
+		ret.nickname = "【" + data.op_nickname + "】";
 		ret.timedesc = util.dateTime.getTimeDesc(data.createtime);
 		ret.msglogo = data.op_logo;
 		ret.message = data.title;
