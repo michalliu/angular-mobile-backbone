@@ -55,12 +55,12 @@
 				这是你自己的帖子
 			</div>
 		</div>
-		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 0">
+		<div class="detail-action-button padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 0">
 			<button class="button button-block button-assertive x-button-hasfooter" ng-click="joinWish(true)">
 			报名
 			</button>
 		</div>
-		<div class="padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 1">
+		<div class="detail-action-button padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 1">
 			<button class="button button-block button-energized x-button-hasfooter" ng-click="joinWish(false)">
 			取消报名
 			</button>

@@ -27,6 +27,26 @@
 		scope.$$listeners.$destroy = [];
 	}
 
+	var GENDAR_LIST = [
+		{"name": "男生", "value": 1},
+		{"name": "女生", "value": 2},
+		{"name": "保密", "value": 3}
+	];
+
+	// 空间这边 1 男 2 女 其它 未填
+	function findGendarByValue(value) {
+		switch(value) {
+			case 0:
+				return GENDAR_LIST[2];
+			case 1:
+				return GENDAR_LIST[0];
+			case 2:
+				return GENDAR_LIST[1];
+			default:
+				return GENDAR_LIST[2];
+		}
+	}
+
 	function home(scope, modal, page, movieData, timeout, util) {
 		scope.goPublish = function goPublish() {
 			page.navigation.redirect("/publish");
@@ -37,18 +57,26 @@
 		var profile = page.data.profile;
 		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
+		var nickName = profile.nickname;
+		var gender = profile.gender;
+
+		scope.genderList = GENDAR_LIST;
 
 		// 说明未登录
 		if (!profile.sid) return;
 
-		// 完善资料
-		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number)) {
-			openProfileModal(modal, scope);
-		}
 		scope.profileData = {
 			city: util.findCityById(movieData.hotCityList,city_id) || movieData.hotCityList[0],
-			phoneNumber: profile.phone_number || ""
+			phoneNumber: profile.phone_number || "",
+			gender: findGendarByValue(profile.qz_gender || ""),
+			nickName: profile.qz_nickname
 		};
+
+		// 完善资料
+		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number) || !nickName || !gender) {
+			openProfileModal(modal, scope);
+		}
+
 		scope.openSettingModal = function () {
 			openProfileModal(modal, scope);
 		};
@@ -62,7 +90,9 @@
 				page.dialog.loading.show("资料提交中...");
 				page.api.setProfile({
 					phone_number: scope.profileData.phoneNumber,
-					city_id: scope.profileData.city.id
+					city_id: scope.profileData.city.id,
+					nickname: scope.profileData.nickName,
+					gender: scope.profileData.gender.value
 				}).
 					success(function updateSuccess(response) {
 						if (response && response.code === 0) {
@@ -134,8 +164,11 @@
 		var profile = page.data.profile;
 		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
+		var nickName = profile.nickname;
+		var gender = profile.gender;
+
 		// 资料不完善不拉数据
-		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number)) {
+		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number) || !nickName || !gender) {
 			return;
 		}
 		var attachInfo=""; // 翻页信息位
