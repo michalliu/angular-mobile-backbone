@@ -68,8 +68,8 @@
 		scope.profileData = {
 			city: util.findCityById(movieData.hotCityList,city_id) || movieData.hotCityList[0],
 			phoneNumber: profile.phone_number || "",
-			gender: findGendarByValue(profile.qz_gender || ""),
-			nickName: profile.qz_nickname
+			gender: findGendarByValue(profile.gender || profile.qz_gender || ""),
+			nickName: nickName || profile.qz_nickname
 		};
 
 		// 完善资料
