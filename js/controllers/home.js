@@ -120,6 +120,8 @@
 			scope.modal.hide();
 			profile.phone_number=scope.profileData.phoneNumber;
 			profile.city_id=scope.profileData.city.id;
+			profile.nickName=scope.profileData.nickName;
+			profile.gender=scope.profileData.gender.value;
 			timeout(function () {
 				$(".setting-button").first().remove(); // 实在搞不懂为什么这里会出现两个设置按钮，只好强制移除一个，估计是ionic的bug
 				page.navigation.reloadState();
