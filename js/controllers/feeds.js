@@ -20,7 +20,7 @@
 		ret.timedesc = util.dateTime.getTimeDesc(data.createtime);
 		ret.msglogo = data.op_logo;
 		ret.message = data.title;
-		ret.summary = data.summary + "卢萨卡的卷发假大空发了";
+		ret.summary = data.summary;
 		ret.type = data.type; // 1 通知 2 可操作
 		return ret;
 	}

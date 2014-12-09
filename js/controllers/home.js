@@ -139,7 +139,7 @@
 		ret.location = data.location;
 		ret.location_addr = data.location_addr;
 		ret.id = data.wid;
-		ret.timedesc = data.nickname + " " + util.dateTime.getTimeDesc(data.endtime);
+		ret.timedesc = "【" + data.nickname + "】 " + util.dateTime.getTimeDesc(data.endtime);
 		if (data.needgender === 2) {
 			ret.wantGender = "仅限女生报名";
 		} else if(data.needgender === 1) {
@@ -148,7 +148,7 @@
 			ret.wantGender = "无要求，开心就好";
 		}
 		if (data.type === 1) {
-			ret.typeDesc="发贴人主动请客";
+			ret.typeDesc="发贴者请客";
 		} else if(data.type === 2) {
 			ret.typeDesc="应征者请客";
 		} else {
