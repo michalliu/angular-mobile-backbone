@@ -116,6 +116,10 @@
 			},500);
 		};
 
+		scope.hideProfileModal = function () {
+			scope.modal.hide();
+		};
+
 		function onPublishSuccess() {
 			scope.modal.hide();
 			profile.phone_number=scope.profileData.phoneNumber;
