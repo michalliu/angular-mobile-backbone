@@ -81,28 +81,25 @@
 			});
 		});*/
 		scope.openDatePickerModal = function openDatepickerModal() {
-			scope.formData.date = null;
 			page.dialog.datepicker.open(scope);
 		};
-		scope.closeDatePickerModal = function (date) {
+		scope.closeDatePickerModal = function (date, hour, minute) {
+			// 点击取消
+			if (date === false && hour === false && minute === false) {
+				page.dialog.datepicker.close(scope);
+				return;
+			}
 			if (!date) {
 				page.dialog.alert("日期不能为空噢");
 				return;
 			}
-			page.dialog.datepicker.close(scope);
-			timeout(function () {
-				scope.formData.time = null;
-				page.dialog.timepicker.open(scope);
-			},200);
-		};
-		scope.closeTimePickerModal = function(hour, minute){
 			if (!hour || !minute) {
 				page.dialog.alert("时间不能为空噢");
 				return;
 			}
-			page.dialog.timepicker.close(scope);
 			scope.formData.time = hour + ":" + minute;
 			scope.formData.displayDate= hour + ":" + minute + " " + scope.formData.date;
+			page.dialog.datepicker.close(scope);
 		};
 		scope.publishEvent = function () {
 			var message = scope.formData.message;
