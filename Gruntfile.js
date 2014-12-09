@@ -116,17 +116,6 @@ module.exports = function(grunt){
 			temp: ["temp"]
 		},
 		// unused
-		compress:{
-			main:{
-				options: {
-					archive: "html.zip",
-					mode:"zip"
-				},
-				files:[
-					{expand:true, src: ["index.html","views/**/*.html"],dest:"/"}
-				]
-			}
-		},
 		htmlmin:{
 			dist:{
 				options:{
@@ -145,6 +134,41 @@ module.exports = function(grunt){
 				src: "**/*",
 				dest: releasefolder + "fonts/"
 			}
+		},
+		compress: {
+			release:{
+				options: {
+					archive: "release.zip",
+					mode: "zip"
+				},
+				files: [
+					{
+					expand: true,
+					cwd:releasefolder,
+					src: "**/*"
+					}
+				]
+			},
+			debug: {
+				options: {
+					archive: "debug.zip",
+					mode: "zip"
+				},
+				files: [
+					{
+					expand: true,
+					cwd:".",
+					src: [
+						"css/**/*",
+						"doc/**/*",
+						"js/**/*",
+						"lib/**/*",
+						"views/**/*",
+						"index.html"
+						]
+					}
+				]
+			}
 		}
 	});
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -156,14 +180,18 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	//grunt.loadNpmTasks('grunt-contrib-compress');
+	grunt.loadNpmTasks('grunt-contrib-compress');
 
 	grunt.registerTask('release_css',['concat:css','cssmin']);
 	grunt.registerTask('release_js',['html2js','concat:js','uglify']);
 	grunt.registerTask('release_jscss',['html2js','concat','uglify','cssmin']);
 	grunt.registerTask('release_html',['jade:release','htmlmin']);
-	grunt.registerTask('release',['release_jscss','release_html']);
+	grunt.registerTask('release',['release_jscss','release_html','copy:release_fonts','compress:release']);
+
 	grunt.registerTask('debug',['jade:debug']);
+	grunt.registerTask('debug_upload',['debug','compress:debug']);
+
+	// regenerate debugging html
 	grunt.registerTask('default',['release','clean:temp']);
 	grunt.registerTask('serve',['connect']);
 };

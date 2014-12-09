@@ -5,3 +5,5 @@
 /js/services/views.js
 /temp
 *.swp
+/debug.zip
+/release.zip
