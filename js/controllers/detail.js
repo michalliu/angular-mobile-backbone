@@ -57,7 +57,7 @@
 					handleWishData(response.data.wish);
 					// ng-if有延迟，刷新一瞬间会先显示，再隐藏，元素会闪现一下
 					timeout(function () {
-						$(".detail-action-button .x-init-hide").removeClass("x-init-hide");
+						$(".detail-action-button.x-init-hide").removeClass("x-init-hide");
 					},0);
 				} else {
 					page.dialog.alert("郁闷，拉取数据失败了，" + response.message);

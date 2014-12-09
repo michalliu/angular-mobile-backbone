@@ -83,14 +83,11 @@ input[readonly].x-input{
 .x-tab-item .badge {
 	top:0 !important;
 }
-.item-avatar > i:first-child{
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    width: 100%;
-}
 .x-center-text{
 	text-align:center;
+}
+.x-autowrap-item p,.x-autowrap-item h2{
+  white-space: normal !important; /*文本自动换行*/
 }
 /* private style */
 .publish-event{
@@ -133,4 +130,9 @@ input[readonly].x-input{
 .message-item:last-child{
 	margin-bottom:89px !important;
 }
-
+.item-avatar > i:first-child{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 100%;
+}

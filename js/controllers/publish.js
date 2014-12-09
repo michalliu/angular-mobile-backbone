@@ -55,7 +55,7 @@
 			minute: "00",
 			time: null,
 			type: scope.typeList[0],
-			want: scope.wantList[1],
+			want: scope.wantList[2],
 			message: ""
 		};
 

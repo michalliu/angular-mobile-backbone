@@ -3,11 +3,11 @@
 	  你所在的城市【<span bo-bind="city.name"></span>】暂无数据
   </div>
 </div>
-<div class="card" ng-repeat="item in items" ng-if="items.length > 0">
+<div class="card x-autowrap-item" ng-repeat="item in items" ng-if="items.length > 0">
       <div class="item item-avatar x-item-big-avatar x-no-padding-bottom" bindonce>
       <img bo-src="item.logo">
 	  <h2 bo-bind="item.timedesc"></h2>
-	  <p><span bo-bind="item.location"></span><span class="x-small-font" bo-bind="item.location_addr"></span></p>
+	  <p><span bo-bind="item.location"></span><br/><span class="x-small-font" bo-bind="item.location_addr"></span></p>
 	  <p bo-bind="item.wantGender"></p>
 	  <p bo-bind="item.typeDesc"></p>
       <button class="button button-block button-small button-assertive" ng-click="goWishDetail(item)">应征</button>
