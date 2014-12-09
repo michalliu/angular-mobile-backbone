@@ -35,6 +35,8 @@ module.exports = function(grunt){
 										"lib/zepto/zepto-fx.js",
 										"lib/ionic/js/ionic.js",
 										"lib/angular/angular.js",
+										"lib/angular/angular-bindonce.js",
+										"lib/angular/angular-datepicker/js/angular-datepicker.js",
 										"lib/ionic/js/angular/angular-animate.js",
 										"lib/ionic/js/angular/angular-sanitize.js",
 										"lib/ionic/js/angular-ui/angular-ui-router.js",
@@ -54,7 +56,10 @@ module.exports = function(grunt){
 					separator: '\n'
 				},
 				files:{
-					"temp/all.css":["lib/ionic/css/ionic.css","css/*.css"]
+					"temp/all.css":[
+						"lib/ionic/css/ionic.css",
+						"lib/angular/angular-datepicker/css/angular-datepicker.css",
+					"css/*.css"]
 				}
 			}
 		},
@@ -129,8 +134,16 @@ module.exports = function(grunt){
 					collapseWhitespace: true
 				},
 				files:{
-					"./release/index.html": "./release/index.html"
+					"./release/index.html": releasefolder + "index.html"
 				}
+			}
+		},
+		copy:{
+			release_fonts: {
+				expand: true,
+				cwd: "lib/ionic/fonts/",
+				src: "**/*",
+				dest: releasefolder + "fonts/"
 			}
 		}
 	});
@@ -142,6 +155,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-htmlmin');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 	//grunt.loadNpmTasks('grunt-contrib-compress');
 
 	grunt.registerTask('release_css',['concat:css','cssmin']);
