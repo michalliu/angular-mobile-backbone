@@ -1,9 +1,9 @@
 <ion-view title="约会详情">
 	<ion-content bindonce="wishPromise">
 		<ion-slide-box>
-			<ion-slide>
+			<ion-slide ng-repeat="logo in wish.logos" ng-init="updateSlider()">
 				<div class="box x-box-center detail-pic-slide">
-					<img width="100" height="100" bo-src="wish.logo"></img>
+					<img width="100" height="100" bo-src="logo"></img>
 				</div>
 			</ion-slide>
 		</ion-slide-box>

@@ -9,11 +9,12 @@
 			"pageService",
 			"utilService",
 			"$ionicNavBarDelegate",
+			"$ionicSlideBoxDelegate",
 			detail]);
 
 	var lastWid;
 
-	function detail(scope, loc, timeout, page, util) {
+	function detail(scope, loc, timeout, page, util, navbar, slideBox) {
 		var params = loc.search();
 		var wid = params.id || lastWid;
 		lastWid = wid;
@@ -28,7 +29,7 @@
 			scope.wish.joinCount = wish.joinlist.length;
 			scope.wish.joinState = wish.join_state;
 			scope.wish.isSelf = wish.uid === page.data.profile.uid;
-			scope.wish.logo = wish.logo;
+			scope.wish.logos = [wish.logo];
 			scope.wish.phomeNumber = wish.phone_number;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";
@@ -45,6 +46,38 @@
 				scope.wish.typeDesc="AA";
 			}
 		}
+
+		// let ion-slide working with ng-repeat
+		// talking
+		// http://forum.ionicframework.com/t/slides-generated-with-ng-repeat-causing-issues-slide-box/394/39
+		/*
+		 * ray_suelzer29d
+         * I know this is old, but I ran into this issue as well while using an ng-repeat on a slider.
+		 * My solution was pretty simple:
+         * 
+         * expose $ionicSlideBoxDelegate;
+         * 
+         * controllersModule.controller("ViewObservationCtrl", ["$scope", "$ionicSlideBoxDelegate",
+         * function ($scope, $ionicSlideBoxDelegate) {      
+         * 
+         *         $scope.updateSlider = function () {
+         *             $ionicSlideBoxDelegate.update(); //or just return the function
+         *         }
+         *     });
+         * ....
+         * Then on my view I called the update function with ng-init:
+         * 
+         *  <ion-slide ng-repeat="image in observation.images.image" ng-init="updateSlider()">                  
+         *          <img src="...jpg"/>                
+         *   </ion-slide>
+		 *
+		 */
+		scope.updateSlider = function() {
+			slideBox.update();
+			if (scope.wish.logos.length <= 1) {
+				$(".slider-pager").remove();
+			}
+		};
 
 		function getWishDetail(){
 			return page.api.getWishDetail(wid).
