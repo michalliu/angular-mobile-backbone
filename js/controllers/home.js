@@ -207,6 +207,11 @@
 						wishList = res.data.wishlist;
 						if (wishList && wishList.length > 0) {
 							scope.items=concat(scope.items, processWishList(wishList, util));
+							if (scope.items.length === 0 && angular.mainTimeReporter) {
+								// 说明是首屏加载成功
+								angular.mainTimeReporter.mark(2,new Date());
+								angular.mainTimeReporter.report();
+							}
 						} else {
 							//page.dialog.toast("没有更多数据了");
 						}

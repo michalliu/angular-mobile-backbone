@@ -41,6 +41,7 @@ module.exports = function(grunt){
 										"lib/ionic/js/angular/angular-sanitize.js",
 										"lib/ionic/js/angular-ui/angular-ui-router.js",
 										"lib/ionic/js/ionic-angular.js",
+										"lib/TCISD.js",
 										"js/lib/*.js"],
 					"temp/js/page.js": [
 										"js/app.js",
@@ -48,7 +49,9 @@ module.exports = function(grunt){
 										"js/services/*.js",
 										"js/filters/*.js",
 										"js/directives/*.js",
-										"js/controllers/**/*.js"]
+										"js/controllers/**/*.js",
+										"js/report.js"
+										]
 				}
 			},
 			css:{
