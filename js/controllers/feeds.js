@@ -69,9 +69,11 @@
 						scope.$broadcast('scroll.infiniteScrollComplete');
 					} else {
 						page.dialog.alert("数据加载失败，" + res.message);
+						scope.moredata = true; // 不再加载更多
 					}
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
+					scope.moredata = true; // 不再加载更多
 				}).always(function () {
 					$(".no-feeds").removeClass("x-init-hide");
 				});

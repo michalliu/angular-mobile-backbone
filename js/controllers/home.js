@@ -48,9 +48,6 @@
 	}
 
 	function home(scope, modal, page, movieData, timeout, util) {
-		scope.goPublish = function goPublish() {
-			page.navigation.redirect("/publish");
-		};
 		$(".tab-item").removeClass("x-tab-activated");
 		$("#homeTab1").addClass("x-tab-activated");
 
@@ -59,12 +56,19 @@
 		var nickName = profile.nickname;
 
 		scope.genderList = GENDAR_LIST;
+		scope.isLogin = page.isLogin();
+		scope.profileValid=page.isProfileValid();
 
 		// 说明未登录
-		if (!page.isLogin()){
+		if (!scope.isLogin){
 			page.log("当前用户未登录");
 			return;
 		}
+
+		// 没有登录没有 gopublish函数，相当于禁用了按钮
+		scope.goPublish = function goPublish() {
+			page.navigation.redirect("/publish");
+		};
 
 		scope.profileData = {
 			city: util.findCityById(movieData.hotCityList,city_id) || movieData.hotCityList[0],
@@ -74,7 +78,7 @@
 		};
 
 		// 完善资料
-		if (!page.isProfileValid()) {
+		if (!page.profileValid) {
 			page.log("用户资料不完整，要求补充数据");
 			openProfileModal(modal, scope);
 		}
@@ -212,9 +216,11 @@
 						scope.$broadcast('scroll.infiniteScrollComplete');
 					} else {
 						page.dialog.alert("数据加载失败，" + res.message);
+						scope.moredata = true; // 不再加载更多
 					}
 				}).error(function () {
 					page.dialog.alert("数据加载失败");
+					scope.moredata = true; // 不再加载更多
 				}).always(function () {
 					$(".no-wish").removeClass("x-init-hide");
 				});
