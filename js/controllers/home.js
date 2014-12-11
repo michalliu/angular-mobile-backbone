@@ -55,15 +55,16 @@
 		$("#homeTab1").addClass("x-tab-activated");
 
 		var profile = page.data.profile;
-		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
 		var nickName = profile.nickname;
-		var gender = profile.gender;
 
 		scope.genderList = GENDAR_LIST;
 
 		// 说明未登录
-		if (!profile.sid) return;
+		if (!page.isLogin()){
+			page.log("当前用户未登录");
+			return;
+		}
 
 		scope.profileData = {
 			city: util.findCityById(movieData.hotCityList,city_id) || movieData.hotCityList[0],
@@ -73,7 +74,8 @@
 		};
 
 		// 完善资料
-		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number) || !nickName || !gender) {
+		if (!page.isProfileValid()) {
+			page.log("用户资料不完整，要求补充数据");
 			openProfileModal(modal, scope);
 		}
 
@@ -99,7 +101,7 @@
 							page.dialog.loading.show("设置成功了");
 							timeout(function () {
 								page.dialog.loading.hide();
-								onPublishSuccess();
+								onSetProfileSuccess();
 							},500);
 						} else {
 							page.dialog.loading.hide();
@@ -120,17 +122,26 @@
 			scope.modal.hide();
 		};
 
-		function onPublishSuccess() {
+		function onSetProfileSuccess() {
 			scope.modal.hide();
 			profile.phone_number=scope.profileData.phoneNumber;
 			profile.city_id=scope.profileData.city.id;
 			profile.nickname=scope.profileData.nickName;
 			profile.gender=scope.profileData.gender.value;
 			timeout(function () {
-				$(".setting-button").first().remove(); // 实在搞不懂为什么这里会出现两个设置按钮，只好强制移除一个，估计是ionic的bug
 				page.navigation.reloadState();
 			},200);
 		}
+
+		timeout(function () {
+			// 必然出现多个按钮重现路径
+			// 设置-》取消-》看被动-》返回
+			// 实在搞不懂为什么会这样，只好强制移除，估计是ionic的bug
+			var buttons = $(".setting-button");
+			for (var i=0,l=buttons.length;i<l-1;i++) {
+				$(buttons[i]).parent().remove();
+			}
+		},300);
 	}
 
 	function processWish(data, util) {
@@ -168,15 +179,16 @@
 
 	function homeTab1(scope, modal, loading, page, util, timeout, movieData) {
 		var profile = page.data.profile;
-		var phone_number = profile.phone_number;
 		var city_id = profile.city_id;
-		var nickName = profile.nickname;
-		var gender = profile.gender;
 
 		// 资料不完善不拉数据
-		if (!phone_number || !city_id || !util.isPhoneNumberValid(phone_number) || !nickName || !gender) {
+		if (!page.isProfileValid()) {
+			scope.message="还不知道你所在的城市呢，请点右上角补充资料";
+			scope.moredata = true; // 不显示loading
+			$(".home-message").removeClass("x-init-hide");
 			return;
 		}
+
 		var attachInfo=""; // 翻页信息位
 		scope.items = [];
 		scope.moredata = false;

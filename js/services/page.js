@@ -20,6 +20,7 @@
 	function pageService(loc, popup, loading, modal, win, http, qs, util, state, timeout) {
 
 		var page;
+		var doc = win.document;
 
 		page = {
 			// navigation utilities
@@ -125,13 +126,32 @@
 				}
 			},
 			data: {
-				profile: util.parseJsonData("profile")
+				profile: util.parseJsonData("profile"),
+				query: qs.decode(doc.location.search.slice(1))
+			},
+			isLogin: function () {
+				var profile = util.parseJsonData("profile");
+				var query = page.data.query;
+				if (profile && profile.sid) {
+					return true;
+				}
+				if (query && query.openkey && query.openid) {
+					return true;
+				}
+				return false;
+			},
+			isProfileValid: function() {
+				var profile = page.data.profile;
+				var phone_number = profile.phone_number;
+				var city_id = profile.city_id;
+				var nickName = profile.nickname;
+				var gender = profile.gender;
+				return phone_number && city_id && util.isPhoneNumberValid(phone_number) && nickName && !isNaN(parseInt(gender,10));
 			},
 			api: {
 				publishWish: function (data) {
 					return http.post("/wish/add_wish", {
-						params: {
-							sid: page.data.profile.sid,
+						params: angular.extend(angular.copy(page.api.$com_params),{
 							uid: page.data.profile.uid,
 							score: 0,
 							theme: 2, // 2为看电影
@@ -144,72 +164,72 @@
 							content: data.message,
 							needgender: data.want.value,
 							format: "json"
-						}
+						})
 					});
 				},
 				getWishList: function (cityId, info) {
 					return http.get("/wish/get_wish_list", {
-						params: {
-							sid: page.data.profile.sid,
+						params: angular.extend(angular.copy(page.api.$com_params),{
 							city_id: page.data.profile.city_id,
 							attachinfo: info,
 							format: "json"
-						}
+						})
 					});
 				},
 				getWishDetail: function (wid) {
 					return http.get("/wish/get_wish_detail", {
-						params: {
-							sid: page.data.profile.sid,
+						params: angular.extend(angular.copy(page.api.$com_params),{
 							wid: wid,
 							format: "json"
-						}
+						})
 					});
 				},
 				joinWish: function (wid,isJoin) {
 					return http.post("/wish/join_wish", {
-						params: {
+						params: angular.extend(angular.copy(page.api.$com_params),{
 							sid: page.data.profile.sid,
 							wid: wid,
 							type: isJoin ? 1 : 2, // 1 报名 2 取消报名
 							format: "json"
-						}
+						})
 					});
 				},
 				getMessageList: function(info) {
 					return http.get("/wish/passive_msg_list", {
-						params: {
-							sid: page.data.profile.sid,
+						params: angular.extend(angular.copy(page.api.$com_params),{
 							attachinfo: info,
 							format: "json"
-						}
+						})
 					});
 				},
 				setProfile: function (map) {
 					return http.post("/wish/set_profile", {
-						params: angular.extend({
-							sid: page.data.profile.sid,
-							format: "json"
-						}, map)
+						params: angular.extend(angular.copy(page.api.$com_params), map)
 					});
 				},
 				acceptInvite: function(map) {
 					return http.post("/wish/accept", {
-						params: angular.extend({
-							sid: page.data.profile.sid,
-							format: "json"
-						}, map)
+						params: angular.extend(angular.copy(page.api.$com_params), map)
 					});
 				},
 				refuseInvite: function (map) {
 					return http.post("/wish/refuse", {
-						params: angular.extend({
-							sid: page.data.profile.sid,
-							format: "json"
-						}, map)
+						params: angular.extend(angular.copy(page.api.$com_params), map)
 					});
 				}
+			},
+			log: function (str) {
+				if (win.console && win.console.log) {
+					win.console.log(str);
+				}
 			}
+		};
+
+		page.api.$com_params = {
+			sid: page.data.profile.sid,
+			openid: page.data.query.openid,
+			openkey: page.data.query.openkey,
+			format: "json"
 		};
 
 		function convertTime(d,t) {

@@ -136,3 +136,9 @@ input[readonly].x-input{
     left: 16px;
     width: 100%;
 }
+.right-buttons > span{
+	display:none !important;
+}
+.right-buttons > span:last-child{
+	display:block !important;
+}
