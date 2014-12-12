@@ -132,6 +132,10 @@
 			isLogin: function () {
 				var profile = util.parseJsonData("profile");
 				var query = page.data.query;
+				// 登录信息可能已过期
+				if (profile && profile.ret !== 0) {
+					return false;
+				}
 				if (profile && profile.sid) {
 					return true;
 				}

@@ -78,7 +78,7 @@
 		};
 
 		// 完善资料
-		if (!page.profileValid) {
+		if (!scope.profileValid) {
 			page.log("用户资料不完整，要求补充数据");
 			openProfileModal(modal, scope);
 		}
