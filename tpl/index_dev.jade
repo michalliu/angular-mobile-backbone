@@ -1,6 +1,7 @@
 extends layout/common
 
 block firsthead
+  script(src="http://localhost:8080/target/target-script-min.js#anonymous")
   link(rel="stylesheet", href=cdn + "lib/ionic/css/ionic.css")
   link(rel="stylesheet", href=cdn + "lib/angular/angular-datepicker/css/angular-datepicker.css")
 
@@ -8,6 +9,7 @@ block lasthead
   link(rel="stylesheet", href=cdn + "css/page.css")
 
 block footer
+  script(src=cdn + "lib/wanba-jsbridge.js")
   script(src=cdn + "lib/zepto/zepto.js")
   script(src=cdn + "lib/zepto/zepto-fx.js")
   script(src=cdn + "lib/ionic/js/ionic.js")
