@@ -86,6 +86,10 @@ input[readonly].x-input{
 .x-autowrap-item p,.x-autowrap-item h2{
   white-space: normal !important; /*文本自动换行*/
 }
+.x-transparent-bar{
+	background:transparent !important;
+	border-bottom: 0 !important;
+}
 /* private style */
 .publish-event{
 	margin-top:44px;
@@ -138,4 +142,7 @@ input[readonly].x-input{
 }
 .right-buttons > span:last-child{
 	display:block !important;
+}
+.photoviewer{
+	background:#1c1c1c;
 }

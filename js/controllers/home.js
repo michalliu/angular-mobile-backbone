@@ -4,7 +4,7 @@
 		.module("app")
 		.controller("HomeControl", ["$scope", "$ionicModal", "pageService", "movieDataService","$timeout","utilService", home])
 		.controller("HomeTab1Control", ["$scope", "$ionicModal", "$ionicLoading", "pageService",
-			"utilService","$timeout", "movieDataService", homeTab1]);
+			"utilService","$timeout", "movieDataService","$ionicSlideBoxDelegate", homeTab1]);
 
 	function concat(a1, a2) {
 		for (var i=0,l=a2.length,one;i<l;i++) {
@@ -129,7 +129,7 @@
 
 		function getPhotoWall() {
 			var ret=[];
-			angular.forEach(scope.photos, function (v,k) {
+			angular.forEach(scope.photos, function (v) {
 				if (v.url) {
 					ret.push(v.url);
 				}
@@ -245,6 +245,7 @@
 		ret.location = data.location;
 		ret.location_addr = data.location_addr;
 		ret.id = data.wid;
+		ret.uid = data.uid;
 		ret.timedesc = "【" + data.nickname + "】 " + util.dateTime.getTimeDesc(data.endtime);
 		if (data.needgender === 2) {
 			ret.wantGender = "仅限女生报名";
@@ -272,7 +273,7 @@
 		return newList;
 	}
 
-	function homeTab1(scope, modal, loading, page, util, timeout, movieData) {
+	function homeTab1(scope, modal, loading, page, util, timeout, movieData, slideBox) {
 		var profile = page.data.profile;
 		var city_id = profile.city_id;
 
@@ -325,6 +326,32 @@
 		// 进入详情页
 		scope.goWishDetail = function (item) {
 			page.navigation.redirect("/detail", {id: item.id});
+		};
+
+		scope.updateSlider = function() {
+			slideBox.update();
+			if (scope.viewimages.length <= 1) {
+				$(".slider-pager").remove();
+			}
+		};
+
+		// 显示头像的形象照
+		scope.showPhoto = function(item){
+			scope.viewimages = [];
+			page.api.getProfile({
+				other_uid: item.uid
+			}).success(function (res) {
+				if (res.code === 0 && res.data) {
+					if (res.data.photowall && res.data.photowall.length > 0) {
+						scope.viewimages = res.data.photowall;
+					}
+				}
+			});
+			page.dialog.photoviewer.open(scope);
+		};
+
+		scope.closePhoto = function () {
+			page.dialog.photoviewer.close(scope);
 		};
 	}
 })();

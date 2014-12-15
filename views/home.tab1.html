@@ -8,7 +8,7 @@
   </div>
 </div>
 <div class="card x-autowrap-item" ng-repeat="item in items" ng-if="items.length > 0">
-      <div class="item item-avatar x-item-big-avatar x-no-padding-bottom" bindonce>
+      <div class="item item-avatar x-item-big-avatar x-no-padding-bottom" ng-click="showPhoto(item)" bindonce>
       <img bo-src="item.logo">
 	  <h2 bo-bind="item.timedesc"></h2>
 	  <p><span bo-bind="item.location"></span><br/><span class="x-small-font" bo-bind="item.location_addr"></span></p>

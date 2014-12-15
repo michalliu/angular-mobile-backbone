@@ -8,13 +8,11 @@
 			"$timeout",
 			"pageService",
 			"utilService",
-			"$ionicNavBarDelegate",
-			"$ionicSlideBoxDelegate",
 			detail]);
 
 	var lastWid;
 
-	function detail(scope, loc, timeout, page, util, navbar, slideBox) {
+	function detail(scope, loc, timeout, page, util) {
 		var params = loc.search();
 		var wid = params.id || lastWid;
 		lastWid = wid;
@@ -74,14 +72,14 @@
          *  <ion-slide ng-repeat="image in observation.images.image" ng-init="updateSlider()">                  
          *          <img src="...jpg"/>                
          *   </ion-slide>
-		 *
-		 */
-		scope.updateSlider = function() {
-			slideBox.update();
-			if (scope.wish.logos.length <= 1) {
-				$(".slider-pager").remove();
-			}
-		};
+         *
+         * scope.updateSlider = function() {
+         * slideBox.update();
+         * if (scope.wish.logos.length <= 1) {
+         * $(".slider-pager").remove();
+         * }
+         * };
+		*/
 
 		function getWishDetail(){
 			return page.api.getWishDetail(wid).

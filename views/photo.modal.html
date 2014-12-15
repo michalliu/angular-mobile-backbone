@@ -1,0 +1,17 @@
+<div class="modal photoviewer">
+	<header class="bar x-transparent-bar">
+		<h1 class="title"></h1>
+		<button class="icon ion-android-close button button-clear" ng-click="closePhoto()"></button>
+	</header>
+	<ion-content>
+		<ion-slide-box bindonce="viewimages">
+		<ion-slide ng-repeat="viewimage in viewimages" ng-init="updateSlider()">
+			<div class="box x-box-center detail-pic-slide">
+				<div class="full-image">
+					<img bo-src="viewimage"></img>
+				</div>
+			</div>
+		</ion-slide>
+		</ion-slide-box>
+	</ion-content>
+</div>

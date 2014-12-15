@@ -101,48 +101,78 @@
 				},
 				datepicker: {
 					open: function (scope) {
+						var namespace="datepickermodal";
 						modal.fromTemplateUrl("views/datepicker.modal.html", {
 							scope: scope,
 							animation: 'slide-in-up'
 						}).then(function (modal) {
-							scope.modal = modal;
+							scope[namespace] = modal;
 						}).then(function () {
-							scope.modal.show();
+							scope[namespace].show();
 						});
 						// unregister event "$destroy" listeners
 						scope.$$listeners.$destroy = [];
 						scope.$on("$destroy", function  () {
-							if (scope.modal) {
-								scope.modal.remove();
-								scope.modal = null;
+							if (scope[namespace]) {
+								scope[namespace].remove();
+								scope[namespace] = null;
 							}
 						});
 					},
 					close: function (scope) {
-						scope.modal.hide();
+						var namespace="datepickermodal";
+						scope[namespace].hide();
 					}
 				},
 				timepicker: {
 					open: function (scope) {
+						var namespace="timerpickermodal";
 						modal.fromTemplateUrl("views/timepicker.modal.html", {
 							scope: scope,
 							animation: 'slide-in-up'
 						}).then(function (modal) {
-							scope.modal = modal;
+							scope[namespace] = modal;
 						}).then(function () {
-							scope.modal.show();
+							scope[namespace].show();
 						});
 						// unregister event "$destroy" listeners
 						scope.$$listeners.$destroy = [];
 						scope.$on("$destroy", function  () {
-							if (scope.modal) {
-								scope.modal.remove();
-								scope.modal = null;
+							if (scope[namespace]) {
+								scope[namespace].remove();
+								scope[namespace] = null;
 							}
 						});
 					},
 					close: function (scope) {
-						scope.modal.hide();
+						var namespace="timerpickermodal";
+						scope[namespace].hide();
+					}
+				},
+				photoviewer: {
+					open: function (scope) {
+						//  Scope
+						var namespace="photoviewermodal";
+						modal.fromTemplateUrl("views/photo.modal.html", {
+							scope: scope,
+							animation: "slide-in-left"
+						}).then(function (modal) {
+							scope[namespace] = modal;
+						}).then(function () {
+							scope[namespace].show();
+						});
+						// unregister event "$destroy" listeners
+						scope.$$listeners.$destroy = [];
+						scope.$on("$destroy", function  () {
+							if (scope[namespace]) {
+								scope[namespace].remove();
+								scope[namespace] = null;
+							}
+						});
+					},
+					close: function(scope) {
+						var namespace="photoviewermodal";
+						scope[namespace].hide();
 					}
 				}
 			},
@@ -229,6 +259,11 @@
 				},
 				setProfile: function (map) {
 					return http.post("/wish/set_profile", {
+						params: angular.extend(angular.copy(page.api.$com_params), map)
+					});
+				},
+				getProfile: function (map) {
+					return http.post("/wish/get_profile", {
 						params: angular.extend(angular.copy(page.api.$com_params), map)
 					});
 				},
