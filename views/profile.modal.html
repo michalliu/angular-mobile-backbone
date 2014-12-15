@@ -2,6 +2,7 @@
 	<header class="bar bar-header bar-positive">
 		<button class="button button-clear" ng-click="hideProfileModal()">取消</button>
 		<h1 class="title">设置资料</h1>
+		<button class="button button-clear" ng-click="fillProfile()">保存</button>
 	</header>
 	<ion-content class="has-header">
 	<div class="padding">
@@ -30,24 +31,28 @@
 			</label>
 		</div>
 		<h4>形象照</h4>
-		<div class="list card" ng-repeat="photo in photos">
-			<div class="item item-body">
+		<div class="list card" ng-repeat="photo in photos" bindonce>
+			<div class="item item-body" bo-id="photo.id" ng-if="photo.url">
 				<img class="full-image" ng-src="{{photo.url}}"></img>
 			</div>
+			<div class="item item-body" bo-id="photo.id" ng-if="!photo.url">
+				<div class="icon ion-image" style="font-size:10em;text-align:center;opacity:0.3;"></div>
+			</div>
 			<div class="item tabs tabs-secondary tabs-icon-left">
-				<a class="tab-item" href="javascript:void(0);" ng-click="removePhoto(photo)">
+				<a class="tab-item" href="javascript:void(0);" ng-click="removePhoto(photo)" ng-if="photo.url">
 					<i class="icon ion-trash-a"></i>
 					删除
 				</a>
-				<a class="tab-item" href="javascript:void(0);" ng-click="replacePhoto(photo)">
-					<i class="icon ion-chatbox"></i>
+				<a class="tab-item" href="javascript:void(0);" ng-click="replacePhoto(photo)" ng-if="photo.url">
+					<i class="icon ion-arrow-swap"></i>
 					更换
+				</a>
+				<a class="tab-item" href="javascript:void(0);" ng-click="replacePhoto(photo)" ng-if="!photo.url">
+					<i class="icon ion-arrow-up-a"></i>
+					上传
 				</a>
 			</div>
 		</div>
 	</div>
-	<div class="padding">
-	 <button class="button button-block button-balanced" ng-click="fillProfile()">提交资料</button>
- 	</div>
 	</ion-content>
 </div>

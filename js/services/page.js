@@ -263,11 +263,18 @@
 					});
 				},
 				getPhonePhoto: function (fn) {
+					var base64data="";
 					if (page.wanba.$getPhonePhotoCallback) {
 						doc.removeEventListener('WEBAPP_DATA', page.wanba.$getPhonePhotoCallback);
 					}
 					page.wanba.$getPhonePhotoCallback = function (evt) {
-						fn(evt);
+						var data = evt.data || {};
+						if (data && data.key === "custom_image") {
+							base64data += data.content;
+							if (data.current === (data.total - 1)) { // last part
+								fn(base64data);
+							}
+						}
 					};
 					doc.addEventListener('WEBAPP_DATA', page.wanba.$getPhonePhotoCallback);
 					QZAppExternal.call({

@@ -1,4 +1,4 @@
-/*globals angular,$*/
+/*globals angular,$,Image*/
 ;(function () {
 	angular
 		.module("app")
@@ -54,23 +54,48 @@
 		var profile = page.data.profile;
 		var city_id = profile.city_id;
 		var nickName = profile.nickname;
+		var photowall = profile.photowall;
+		var photos = [{
+				"id": "photo0"
+			},{
+				"id": "photo1"
+			},{
+				"id": "photo2"
+			}];
 
 		scope.genderList = GENDAR_LIST;
 		scope.isLogin = page.isLogin();
 		scope.profileValid=page.isProfileValid();
 
-		//TODO: 个人形象照
+		if (photowall && photowall.length > 0) {
+			angular.forEach(photowall, function (v, i) {
+				photos[i].url = v;
+			});
+		}
+
+		/*
 		scope.photos = [
 			{
+				"id": "photo0",
+				"url": "http://ttest.m.qzone.com/upload_files/7eef6cf6-9865-a609-0069-a609d068a609.jpeg"
+			},
+			{
+				"id": "photo1",
 				"url": "http://img1.gtimg.com/11/1128/112830/11283008_980x1200_850.jpg"
 			},
 			{
+				"id": "photo2",
 				"url": "http://img1.gtimg.com/11/1128/112830/11283005_980x1200_850.jpg"
 			},
 			{
+				"id": "photo3",
 				"url": "http://img1.gtimg.com/11/1128/112830/11283006_980x1200_850.jpg"
 			}
 		];
+		*/
+
+		scope.photos = photos; // 默认三张空白图片
+
 		// 说明未登录
 		if (!scope.isLogin){
 			page.log("当前用户未登录");
@@ -93,12 +118,25 @@
 		if (!scope.profileValid) {
 			page.log("用户资料不完整，要求补充数据");
 			openProfileModal(modal, scope);
+		} else {
+			page.log("用户资料ok");
 		}
 
 		scope.openSettingModal = function () {
 			openProfileModal(modal, scope);
 		};
 		scope.cityList = movieData.hotCityList;
+
+		function getPhotoWall() {
+			var ret=[];
+			angular.forEach(scope.photos, function (v,k) {
+				if (v.url) {
+					ret.push(v.url);
+				}
+			});
+			return angular.toJson(ret);
+		}
+
 		scope.fillProfile = function () {
 			timeout(function () {
 				if (!util.isPhoneNumberValid(scope.profileData.phoneNumber)){
@@ -110,11 +148,12 @@
 					phone_number: scope.profileData.phoneNumber,
 					city_id: scope.profileData.city.id,
 					nickname: scope.profileData.nickName,
-					gender: scope.profileData.gender.value
+					gender: scope.profileData.gender.value,
+					photowall: getPhotoWall()
 				}).
 					success(function updateSuccess(response) {
 						if (response && response.code === 0) {
-							page.dialog.loading.show("设置成功了");
+							page.dialog.loading.show("资料更新成功");
 							timeout(function () {
 								page.dialog.loading.hide();
 								onSetProfileSuccess();
@@ -140,27 +179,39 @@
 
 		scope.removePhoto = function (photo) {
 			page.dialog.confirm("确定要移除这张照片吗?", null, function () {
-				for (var i=0;i<scope.photos.length;i++) {
-					if (photo.url === scope.photos[i].url) {
-						scope.photos.splice(i,1);
-					}
-				}
+				photo.url = null;
 			});
 		};
 
-		scope.replacePhoto = function (photo) {
-			uploadPhoto();
+		scope.replacePhoto = function (oldPhoto) {
+			page.log("更换形象照");
+			uploadNewPhoto(oldPhoto);
 		};
 
 		// 上传照片
-		function uploadPhoto() {
-			page.wanba.getPhonePhoto(function (event) {
-				var data = event.data || {};
-				var base64 = data.content;
-				// 上传照片
-				// TODO: 上传中....
+		function uploadNewPhoto(old) {
+			page.wanba.getPhonePhoto(function (data) {
+				page.dialog.loading.show("正在上传形象照片...");
 				page.api.uploadBase64({
-					data: base64
+					data: data
+				}).success(function (res) {
+					if (res && res.code === 0 && res.data) {
+						page.dialog.loading.show("照片上传成功");
+						timeout(function () {
+							page.dialog.loading.hide();
+							old.url = res.data.url;
+						},500);
+					} else {
+						page.dialog.loading.show(res.message);
+						timeout(function () {
+							page.dialog.loading.hide();
+						},2000); // 2 秒后错误提示消失
+					}
+				}).error(function () {
+					page.dialog.loading.show("照片上传失败，服务器错误");
+					timeout(function () {
+						page.dialog.loading.hide();
+					},2000); // 2 秒后错误提示消失
 				});
 			});
 		}
@@ -171,6 +222,7 @@
 			profile.city_id=scope.profileData.city.id;
 			profile.nickname=scope.profileData.nickName;
 			profile.gender=scope.profileData.gender.value;
+			profile.photowall=angular.fromJson(getPhotoWall());
 			timeout(function () {
 				page.navigation.reloadState();
 			},200);
