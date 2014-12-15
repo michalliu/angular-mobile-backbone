@@ -76,14 +76,12 @@
 		</div>
 		<div class="card" bo-if="!wish.isSelf && wish.joinState === 2">
 			<div class="item item-text-wrap">
-				<span bo-bind="wish.messageTitle"></span>拒绝了你的报名
+				主人拒绝了你的报名
 			</div>
 		</div>
 		<div class="card" bo-if="!wish.isSelf && wish.joinState === 3">
 			<div class="item item-text-wrap">
-				<span bo-bind="wish.messageTitle"></span>同意了你的报名
-			</div>
-			<div class="item item-text-wrap">
+				恭喜!主人已经同意了你的报名<br/>
 				悄悄告诉你，主人的手机号是 <span bo-bind="wish.phomeNumber"></span>
 			</div>
 		</div>
