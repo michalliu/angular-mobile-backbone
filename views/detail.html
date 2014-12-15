@@ -1,13 +1,13 @@
 <ion-view title="约会详情">
-	<ion-content bindonce="wishPromise">
-		<ion-slide-box>
-			<ion-slide ng-repeat="logo in wish.logos" ng-init="updateSlider()">
-				<div class="box x-box-center detail-pic-slide">
-					<img width="100" height="100" bo-src="logo"></img>
-				</div>
-			</ion-slide>
-		</ion-slide-box>
-		<div class="list">
+	<ion-content bindonce="wishPromise" class="x-hasfooter">
+		<h4 class="padding">活动信息</h4>
+		<div class="list card">
+		<a class="item item-icon-left" href="javascript:void(0);">
+			<i class="icon ion-person"></i>
+			主人
+			<span class="item-note" bo-bind="wish.nickname">
+			</span>
+		</a>
 
 		<a class="item item-icon-left" href="javascript:void(0);">
 			<i class="icon ion-clock"></i>
@@ -38,7 +38,7 @@
 		</a>
 
 		<a class="item item-icon-left detail-item" href="javascript:void(0);">
-			<i class="icon ion-person"></i>
+			<i class="icon ion-heart"></i>
 			应征者
 			<div class="detail-joinlist" ng-if="wish.joinCount > 0">
 				<img ng-src="{{person.logo}}" height="40" width="40" ng-repeat="person in wish.joinList track by $index">
@@ -46,31 +46,40 @@
 			<span class="badge badge-assertive" ng-bind="wish.joinCount"></span>
 		</a>
 		</div>
-		<div class="card x-card">
-			<div class="item item-text-wrap" bo-bind="wish.message">
+
+		<h4 class="padding">主人留言</h4>
+		<div class="card">
+			<div class="item item-text-wrap" bo-bind="wish.message"></div>
+		</div>
+
+		<h4 class="padding">主人照片</h4>
+		<div class="list card">
+			<div class="item item-body" ng-repeat="logo in wish.logos">
+				<img class="full-image" ng-src="{{logo}}"></img>
 			</div>
 		</div>
-		<div class="card x-xcard x-hasfooter" bo-if="wish.isSelf">
+
+		<div class="card" bo-if="wish.isSelf">
 			<div class="item item-text-wrap">
 				这是你自己的帖子
 			</div>
 		</div>
-		<div class="detail-action-button padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 0">
+		<div class="detail-action-button padding x-init-hide" ng-if="!wish.isSelf && wish.joinState === 0">
 			<button class="button button-block button-assertive x-button-hasfooter" ng-click="joinWish(true)">
 			报名
 			</button>
 		</div>
-		<div class="detail-action-button padding x-init-hide x-hasfooter" ng-if="!wish.isSelf && wish.joinState === 1">
+		<div class="detail-action-button padding x-init-hide" ng-if="!wish.isSelf && wish.joinState === 1">
 			<button class="button button-block button-energized x-button-hasfooter" ng-click="joinWish(false)">
 			取消报名
 			</button>
 		</div>
-		<div class="card x-xcard x-hasfooter" bo-if="!wish.isSelf && wish.joinState === 2">
+		<div class="card" bo-if="!wish.isSelf && wish.joinState === 2">
 			<div class="item item-text-wrap">
 				<span bo-bind="wish.messageTitle"></span>拒绝了你的报名
 			</div>
 		</div>
-		<div class="card x-xcard x-hasfooter" bo-if="!wish.isSelf && wish.joinState === 3">
+		<div class="card" bo-if="!wish.isSelf && wish.joinState === 3">
 			<div class="item item-text-wrap">
 				<span bo-bind="wish.messageTitle"></span>同意了你的报名
 			</div>

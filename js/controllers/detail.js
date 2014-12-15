@@ -23,13 +23,17 @@
 		function handleWishData(wish) {
 			scope.wish.time = util.dateTime.getTimeDesc(wish.endtime);
 			scope.wish.location_addr = wish.location;
-			scope.wish.messageTitle = "主人【" + wish.nickname + "】";
-			scope.wish.message =scope.wish.messageTitle + "留言: " + wish.content;
+			scope.wish.nickname=wish.nickname;
+			scope.wish.message =wish.content;
 			scope.wish.joinList = wish.joinlist;
 			scope.wish.joinCount = wish.joinlist.length;
 			scope.wish.joinState = wish.join_state;
 			scope.wish.isSelf = wish.uid === page.data.profile.uid;
-			scope.wish.logos = [wish.logo];
+			if (wish.photowall && wish.photowall.length > 0) {
+				scope.wish.logos = wish.photowall;
+			} else {
+				scope.wish.logos = [wish.logo];
+			}
 			scope.wish.phomeNumber = wish.phone_number;
 			if (wish.needgender === 2) {
 				scope.wish.wantGender = "女生";
