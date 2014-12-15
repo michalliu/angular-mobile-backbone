@@ -5,6 +5,7 @@
 	</header>
 	<ion-content class="has-header">
 	<div class="padding">
+		<h4>基本资料</h4>
 		<div class="list">
 			<label class="item item-input item-stacked-label">
 				<span class="input-label">手机号码</span>
@@ -28,9 +29,25 @@
 				<select ng-model="profileData.city" ng-options="city.name for city in cityList"></select>
 			</label>
 		</div>
+		<h4>形象照</h4>
+		<div class="list card" ng-repeat="photo in photos">
+			<div class="item item-body">
+				<img class="full-image" ng-src="{{photo.url}}"></img>
+			</div>
+			<div class="item tabs tabs-secondary tabs-icon-left">
+				<a class="tab-item" href="javascript:void(0);" ng-click="removePhoto(photo)">
+					<i class="icon ion-trash-a"></i>
+					删除
+				</a>
+				<a class="tab-item" href="javascript:void(0);" ng-click="replacePhoto(photo)">
+					<i class="icon ion-chatbox"></i>
+					更换
+				</a>
+			</div>
+		</div>
 	</div>
 	<div class="padding">
-	 <button class="button button-block button-balanced" ng-click="fillProfile()">确定</button>
+	 <button class="button button-block button-balanced" ng-click="fillProfile()">提交资料</button>
  	</div>
 	</ion-content>
 </div>

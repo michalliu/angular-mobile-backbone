@@ -1,4 +1,4 @@
-/*globals angular*/
+/*globals angular,QZAppExternal*/
 ;(function () {
 	"use strict";
 
@@ -53,6 +53,27 @@
 								onTap: function (e) {
 									if (callback){
 										return callback(e);
+									}
+									return;
+								}
+							}
+						]
+					});
+				},
+				confirm: function (message, title, ok) {
+					title = title || "";
+					popup.show({
+						title: title,
+						template: message,
+						scope: null, // Scope (optional). A scope to link to the popup content.
+						buttons: [
+							{ text: '取消' },
+							{
+								text: '<b>确定</b>',
+								type: 'button-positive',
+								onTap: function (e) {
+									if (ok){
+										return ok(e);
 									}
 									return;
 								}
@@ -220,6 +241,43 @@
 					return http.post("/wish/refuse", {
 						params: angular.extend(angular.copy(page.api.$com_params), map)
 					});
+				},
+				uploadBase64: function(data) {
+					return http.post("/wish/upload", {
+						params: angular.extend(angular.copy(page.api.$com_params), data)
+					});
+				}
+			},
+			wanba: {
+				getQzPhoto: function () {
+					// 这个接口有点儿问题
+					// 回调不一定回来
+					// 调用系统相册靠谱一些
+					QZAppExternal.call({
+						key:'custom_image',
+						type:'qzonephoto',
+						params:{
+							width: 800,
+							type:'base64'
+						}
+					});
+				},
+				getPhonePhoto: function (fn) {
+					if (page.wanba.$getPhonePhotoCallback) {
+						doc.removeEventListener('WEBAPP_DATA', page.wanba.$getPhonePhotoCallback);
+					}
+					page.wanba.$getPhonePhotoCallback = function (evt) {
+						fn(evt);
+					};
+					doc.addEventListener('WEBAPP_DATA', page.wanba.$getPhonePhotoCallback);
+					QZAppExternal.call({
+						key:'custom_image',
+						type:'album',
+						params:{
+							width: 800,
+							limit: 1 // 一次传一张
+						}
+					});
 				}
 			},
 			log: function (str) {
@@ -228,7 +286,6 @@
 				}
 			}
 		};
-
 		page.api.$com_params = {
 			sid: page.data.profile.sid,
 			openid: page.data.query.openid,

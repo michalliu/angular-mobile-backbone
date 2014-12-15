@@ -59,6 +59,18 @@
 		scope.isLogin = page.isLogin();
 		scope.profileValid=page.isProfileValid();
 
+		//TODO: 个人形象照
+		scope.photos = [
+			{
+				"url": "http://img1.gtimg.com/11/1128/112830/11283008_980x1200_850.jpg"
+			},
+			{
+				"url": "http://img1.gtimg.com/11/1128/112830/11283005_980x1200_850.jpg"
+			},
+			{
+				"url": "http://img1.gtimg.com/11/1128/112830/11283006_980x1200_850.jpg"
+			}
+		];
 		// 说明未登录
 		if (!scope.isLogin){
 			page.log("当前用户未登录");
@@ -125,6 +137,33 @@
 		scope.hideProfileModal = function () {
 			scope.modal.hide();
 		};
+
+		scope.removePhoto = function (photo) {
+			page.dialog.confirm("确定要移除这张照片吗?", null, function () {
+				for (var i=0;i<scope.photos.length;i++) {
+					if (photo.url === scope.photos[i].url) {
+						scope.photos.splice(i,1);
+					}
+				}
+			});
+		};
+
+		scope.replacePhoto = function (photo) {
+			uploadPhoto();
+		};
+
+		// 上传照片
+		function uploadPhoto() {
+			page.wanba.getPhonePhoto(function (event) {
+				var data = event.data || {};
+				var base64 = data.content;
+				// 上传照片
+				// TODO: 上传中....
+				page.api.uploadBase64({
+					data: base64
+				});
+			});
+		}
 
 		function onSetProfileSuccess() {
 			scope.modal.hide();
